@@ -1,51 +1,56 @@
-import { Shield, Wrench, CheckCircle } from "lucide-react";
+import { Wrench, Droplets, Users, Shield } from "lucide-react";
 
 const benefits = [
   {
-    icon: Shield,
-    title: "Бережный подход",
-    description: "Используем только pH-нейтральную химию, безопасную для деликатных покрытий и материалов",
-  },
-  {
     icon: Wrench,
-    title: "Профессиональное оснащение",
-    description: "Работаем на оборудовании Santoemma и Kärcher — стандарт европейского клининга",
+    title: "Профессиональный арсенал",
+    text: "Использование итальянского и немецкого оборудования (Santoemma, Karcher) для глубинной чистки.",
   },
   {
-    icon: CheckCircle,
-    title: "Полная гарантия сохранности",
-    description: "Гарантируем сохранность всех материалов интерьера. Несём полную ответственность за результат",
+    icon: Droplets,
+    title: "Гипоаллергенная химия",
+    text: "pH-нейтральные и безопасные составы, которые сохраняют текстуру премиум-материалов.",
+  },
+  {
+    icon: Users,
+    title: "Штатные эксперты",
+    text: "Обученные клинеры, прошедшие аттестацию по работе с деликатными поверхностями.",
+  },
+  {
+    icon: Shield,
+    title: "Материальная ответственность",
+    text: "Мы полностью страхуем ваш интерьер и несём ответственность за сохранность каждой детали.",
   },
 ];
 
 const BenefitsSection = () => {
   return (
-    <section className="py-24 bg-cream">
+    <section id="benefits" className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-gold font-body text-sm tracking-[0.3em] uppercase">
-            Почему выбирают нас
+            Почему мы
           </span>
-          <div className="w-16 h-px gold-line mx-auto mt-4 mb-6" />
+          <div className="w-16 h-px gold-line mt-4 mb-6 mx-auto" />
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground">
-            Безупречный результат в каждой детали
+            Стандарты роскошного клининга от БелкаClean
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {benefits.map((benefit) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((b) => (
             <div
-              key={benefit.title}
-              className="bg-background rounded-xl p-8 text-center shadow-sm hover:shadow-gold transition-shadow duration-300 border border-border"
+              key={b.title}
+              className="bg-background rounded-2xl p-8 border border-border hover:border-gold/30 hover:shadow-gold transition-all duration-300 group"
             >
-              <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">
-                <benefit.icon className="w-7 h-7 text-gold" />
+              <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
+                <b.icon className="w-7 h-7 text-gold" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
-                {benefit.title}
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
+                {b.title}
               </h3>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                {benefit.description}
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                {b.text}
               </p>
             </div>
           ))}

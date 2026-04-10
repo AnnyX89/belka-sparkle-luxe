@@ -1,8 +1,8 @@
-import founderImage from "@/assets/founder-anna.jpg";
+import founderImage from "@/assets/founder-anna-real.jpg";
 
 const AboutSection = () => {
   return (
-    <section className="py-24 bg-cream">
+    <section id="about" className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
@@ -13,13 +13,13 @@ const AboutSection = () => {
               width={800}
               height={1024}
               loading="lazy"
-              className="rounded-xl w-full object-cover aspect-[4/5] relative z-10"
+              className="rounded-xl w-full object-cover object-top aspect-[4/5] relative z-10"
             />
           </div>
 
           <div>
             <span className="text-gold font-body text-sm tracking-[0.3em] uppercase">
-              Основатель
+              Личный контроль качества
             </span>
             <div className="w-16 h-px gold-line mt-4 mb-6" />
             <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground mb-6">
