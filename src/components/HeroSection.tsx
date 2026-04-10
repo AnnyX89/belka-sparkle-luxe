@@ -1,4 +1,5 @@
 import heroImage from "@/assets/hero-interior.jpg";
+import logo from "@/assets/belkaclean-logo.jpg";
 
 const HeroSection = () => {
   return (
@@ -13,6 +14,34 @@ const HeroSection = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
       </div>
+
+      {/* Navigation bar with logo */}
+      <nav className="absolute top-0 left-0 right-0 z-20 py-4">
+        <div className="container mx-auto px-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="БелкаClean логотип"
+              className="w-12 h-12 rounded-full object-cover border-2 border-gold/30"
+            />
+            <span className="font-heading text-xl font-semibold text-primary-foreground">
+              <span className="text-gold">Белка</span>Clean
+            </span>
+          </div>
+          <div className="hidden md:flex items-center gap-6">
+            <a href="#benefits" className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors">Преимущества</a>
+            <a href="#services" className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors">Услуги</a>
+            <a href="#about" className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors">О нас</a>
+            <a href="#gallery" className="font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors">Результаты</a>
+            <a
+              href="tel:89642423000"
+              className="font-body text-sm text-gold border border-gold/40 px-4 py-2 rounded-lg hover:bg-gold/10 transition-colors"
+            >
+              8 (964) 242-30-00
+            </a>
+          </div>
+        </div>
+      </nav>
 
       <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
         <div className="animate-fade-in-up">
