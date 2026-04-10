@@ -10,7 +10,7 @@ const serviceOptions = [
   { label: "Премиум-поддержание", pricePerM2: 120 },
 ];
 
-const WEBHOOK_URL = "https://hook.eu2.make.com/placeholder";
+const WEBHOOK_URL = "http://205.196.80.138:8000/webhook";
 
 const ChatBot = () => {
   const [open, setOpen] = useState(false);
