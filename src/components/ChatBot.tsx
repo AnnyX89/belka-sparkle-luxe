@@ -55,16 +55,19 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* FAB */}
+      {/* FAB - Prominent Order Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full gradient-gold shadow-gold flex items-center justify-center hover:scale-105 transition-transform"
+        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full bg-[hsl(221,83%,53%)] shadow-[0_8px_32px_rgba(37,99,235,0.5)] flex items-center justify-center hover:scale-110 hover:bg-[hsl(221,83%,45%)] transition-all duration-300 border-4 border-white"
         aria-label="Открыть калькулятор"
       >
         {open ? (
-          <X className="w-6 h-6 text-primary-foreground" />
+          <X className="w-10 h-10 text-white" />
         ) : (
-          <img src={belkaLogo} alt="Белка" className="w-10 h-10 rounded-full object-cover" />
+          <div className="flex flex-col items-center gap-1">
+            <img src={belkaLogo} alt="Белка" className="w-12 h-12 rounded-full object-cover border-2 border-white" />
+            <span className="text-white text-[10px] font-bold uppercase tracking-wide">Заказать</span>
+          </div>
         )}
       </button>
 
