@@ -58,7 +58,7 @@ const ChatBot = () => {
       {/* FAB - Prominent Order Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full bg-[hsl(221,83%,53%)] shadow-[0_8px_32px_rgba(37,99,235,0.5)] flex items-center justify-center hover:scale-110 hover:bg-[hsl(221,83%,45%)] transition-all duration-300 border-4 border-white"
+        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full gradient-gold shadow-[0_8px_32px_hsl(38_60%_52%/0.4)] flex items-center justify-center hover:scale-110 transition-all duration-300 border-4 border-white"
         aria-label="Открыть калькулятор"
       >
         {open ? (
