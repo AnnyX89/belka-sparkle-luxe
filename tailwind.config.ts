@@ -13,7 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
+      },
       colors: {
+        gold: "hsl(var(--gold))",
+        ivory: "hsl(var(--ivory))",
+        cream: "hsl(var(--cream))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
