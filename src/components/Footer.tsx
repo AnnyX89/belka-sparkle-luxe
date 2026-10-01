@@ -1,4 +1,4 @@
-import { Phone, ExternalLink } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -9,11 +9,8 @@ const Footer = () => {
             <span className="font-heading text-2xl font-semibold text-primary-foreground">
               <span className="text-gold">Белка</span>Clean
             </span>
-            <p className="font-body text-sm text-primary-foreground/50 mt-1">
-              Экспертный клининг в Челябинске
-            </p>
+            <p className="font-body text-sm text-primary-foreground/50 mt-1">Экспертный клининг в Челябинске</p>
           </div>
-
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <a
               href="tel:89642423000"
@@ -28,7 +25,6 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 font-body text-primary-foreground/80 hover:text-gold transition-colors"
             >
-              <ExternalLink className="w-4 h-4" />
               VK: belkaclean74
             </a>
             <a
@@ -37,12 +33,11 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 font-body text-primary-foreground/80 hover:text-gold transition-colors"
             >
-              <ExternalLink className="w-4 h-4" />
+              <Send className="w-4 h-4" />
               Telegram
             </a>
           </div>
         </div>
-
         <div className="w-full h-px bg-primary-foreground/10 my-8" />
         <p className="text-center font-body text-xs text-primary-foreground/30">
           © {new Date().getFullYear()} БелкаClean. Все права защищены.

@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
+All colors MUST be HSL.
+*/
 
 @layer base {
   :root {
@@ -42,11 +44,6 @@
     --ivory: 40 33% 97%;
     --cream: 35 30% 93%;
     --warm-gray: 30 8% 45%;
-    --cta-blue: 221 83% 53%;
-    --cta-blue-dark: 221 83% 45%;
-
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -65,11 +62,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
 }
 
@@ -77,50 +71,35 @@
   .font-heading {
     font-family: var(--font-heading);
   }
+
   .font-body {
     font-family: var(--font-body);
   }
-  .text-gold {
-    color: hsl(var(--gold));
-  }
-  .bg-gold {
-    background-color: hsl(var(--gold));
-  }
-  .bg-ivory {
-    background-color: hsl(var(--ivory));
-  }
-  .bg-cream {
-    background-color: hsl(var(--cream));
-  }
-  .border-gold {
-    border-color: hsl(var(--gold));
-  }
+
   .gradient-gold {
-    background: linear-gradient(135deg, hsl(38 60% 52%), hsl(38 50% 65%), hsl(38 60% 52%));
+    background: linear-gradient(135deg, #ce983b, #d2b279, #ce983b);
   }
-  .shadow-gold {
-    box-shadow: 0 8px 32px -8px hsl(38 60% 52% / 0.3);
-  }
+
   .gold-line {
     background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 8px 32px -8px rgba(206, 152, 59, 0.3);
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
   }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-shimmer {
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

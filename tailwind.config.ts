@@ -12,12 +12,15 @@ export default {
         "2xl": "1400px",
       },
     },
-    fontFamily: {
-      heading: ['Playfair Display', 'Georgia', 'serif'],
-      body: ['Inter', 'system-ui', 'sans-serif'],
-    },
     extend: {
+      fontFamily: {
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
+      },
       colors: {
+        gold: "hsl(var(--gold))",
+        ivory: "hsl(var(--ivory))",
+        cream: "hsl(var(--cream))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

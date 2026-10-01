@@ -8,7 +8,7 @@ import ChatBot from "@/components/ChatBot";
 
 const Index = () => {
   return (
-    <main>
+    <div className="min-h-screen bg-background">
       <HeroSection />
       <BenefitsSection />
       <ServicesSection />
@@ -16,7 +16,7 @@ const Index = () => {
       <GallerySection />
       <Footer />
       <ChatBot />
-    </main>
+    </div>
   );
 };
 
