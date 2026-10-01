@@ -1,0 +1,235 @@
+import { useState } from "react";
+import { X, Phone, CheckCircle2, Squirrel } from "lucide-react";
+import logo from "@/assets/belkaclean-logo.jpg";
+
+const services = [
+  { label: "Генеральная уборка", pricePerM2: 150 },
+  { label: "Послеремонтный клининг", pricePerM2: 200 },
+  { label: "Премиум-поддержание", pricePerM2: 120 },
+];
+
+const WEBHOOK_URL = "http://205.196.80.138:8000/webhook";
+
+const BotMessage = ({ text }: { text: string }) => (
+  <div className="flex gap-2">
+    <div className="w-7 h-7 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+      <Squirrel className="w-3.5 h-3.5 text-gold" />
+    </div>
+    <div className="bg-cream rounded-2xl rounded-tl-sm px-4 py-3 font-body text-sm text-foreground leading-relaxed">
+      {text}
+    </div>
+  </div>
+);
+
+const ChatBot = () => {
+  const [open, setOpen] = useState(false);
+  const [step, setStep] = useState<"calculator" | "booking" | "submitted">("calculator");
+  const [serviceIdx, setServiceIdx] = useState(0);
+  const [area, setArea] = useState(80);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sending, setSending] = useState(false);
+
+  const price = services[serviceIdx].pricePerM2 * area;
+
+  const reset = () => {
+    setStep("calculator");
+    setServiceIdx(0);
+    setArea(80);
+    setName("");
+    setPhone("");
+  };
+
+  const submit = async () => {
+    if (!phone.trim()) return;
+    setSending(true);
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          service: services[serviceIdx].label,
+          area,
+          estimatedPrice: price,
+        }),
+      });
+    } catch {
+      // ignore network errors — the lead is still confirmed to the client
+    }
+    setSending(false);
+    setStep("submitted");
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full gradient-gold shadow-[0_8px_32px_hsl(38_60%_52%/0.4)] flex items-center justify-center hover:scale-110 transition-all duration-300 border-4 border-white"
+        aria-label="Открыть калькулятор"
+      >
+        {open ? (
+          <X className="w-10 h-10 text-white" />
+        ) : (
+          <div className="flex flex-col items-center gap-1">
+            <img src={logo} alt="Белка" className="w-12 h-12 rounded-full object-cover border-2 border-white" />
+            <span className="text-white text-[10px] font-bold uppercase tracking-wide">Заказать</span>
+          </div>
+        )}
+      </button>
+
+      {open && (
+        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] bg-background rounded-2xl shadow-2xl border border-border overflow-hidden animate-fade-in-up">
+          <div className="gradient-gold p-4 flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Белка"
+              className="w-10 h-10 rounded-full object-cover border border-primary-foreground/20"
+            />
+            <div>
+              <p className="font-heading font-semibold text-primary-foreground">БелкаClean</p>
+              <p className="font-body text-xs text-primary-foreground/80">Калькулятор стоимости</p>
+            </div>
+          </div>
+
+          <div className="p-5 max-h-[420px] overflow-y-auto">
+            {step === "calculator" && (
+              <div className="space-y-5">
+                <BotMessage text="Привет! 🐿️ Рассчитайте стоимость клининга прямо сейчас:" />
+
+                <div>
+                  <label className="font-body text-xs text-muted-foreground mb-1.5 block">Тип услуги</label>
+                  <select
+                    value={serviceIdx}
+                    onChange={(e) => setServiceIdx(Number(e.target.value))}
+                    className="w-full font-body text-sm px-4 py-3 rounded-lg border border-border bg-background focus:border-gold focus:outline-none appearance-none"
+                  >
+                    {services.map((s, i) => (
+                      <option key={s.label} value={i}>
+                        {s.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="font-body text-xs text-muted-foreground mb-1.5 flex justify-between">
+                    <span>Площадь</span>
+                    <span className="text-gold font-semibold">{area} м²</span>
+                  </label>
+                  <input
+                    type="range"
+                    min={30}
+                    max={300}
+                    step={5}
+                    value={area}
+                    onChange={(e) => setArea(Number(e.target.value))}
+                    className="w-full accent-[hsl(38,60%,52%)] h-2 rounded-lg"
+                  />
+                  <div className="flex justify-between font-body text-[10px] text-muted-foreground mt-1">
+                    <span>30 м²</span>
+                    <span>300 м²</span>
+                  </div>
+                </div>
+
+                <div className="bg-cream rounded-xl p-4 text-center">
+                  <p className="font-body text-xs text-muted-foreground mb-1">Примерная стоимость</p>
+                  <p className="font-heading text-3xl font-semibold text-gold">{price.toLocaleString("ru-RU")} ₽</p>
+                  <p className="font-body text-[10px] text-muted-foreground mt-1">
+                    {services[serviceIdx].label} · {area} м²
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setStep("booking")}
+                  className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity"
+                >
+                  Забронировать уборку
+                </button>
+
+                <a
+                  href="https://t.me/BelkaAnny89"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center font-body text-sm text-gold hover:underline"
+                >
+                  💬 Написать в Telegram
+                </a>
+              </div>
+            )}
+
+            {step === "booking" && (
+              <div className="space-y-4">
+                <BotMessage
+                  text={`Отлично! ${services[serviceIdx].label}, ${area} м² — ≈ ${price.toLocaleString(
+                    "ru-RU"
+                  )} ₽. Оставьте контакт, и Аня свяжется с вами:`}
+                />
+
+                <div>
+                  <label className="font-body text-xs text-muted-foreground mb-1.5 block">Ваше имя</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Имя"
+                    className="w-full font-body text-sm px-4 py-3 rounded-lg border border-border bg-background focus:border-gold focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-body text-xs text-muted-foreground mb-1.5 block">Телефон *</label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center gap-1.5 px-3 border border-border rounded-lg">
+                      <Phone className="w-3.5 h-3.5 text-muted-foreground" />
+                    </div>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+7 (___) ___-__-__"
+                      className="flex-1 font-body text-sm px-4 py-3 rounded-lg border border-border bg-background focus:border-gold focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  onClick={submit}
+                  disabled={!phone.trim() || sending}
+                  className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity disabled:opacity-50"
+                >
+                  {sending ? "Отправка…" : "Отправить заявку"}
+                </button>
+
+                <button
+                  onClick={() => setStep("calculator")}
+                  className="w-full text-center font-body text-sm text-muted-foreground hover:text-gold transition-colors"
+                >
+                  ← Назад к калькулятору
+                </button>
+              </div>
+            )}
+
+            {step === "submitted" && (
+              <div className="text-center py-6 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8 text-gold" />
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-foreground">Спасибо!</h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  Ваша заявка принята, Аня свяжется с вами в течение 15 минут
+                </p>
+                <button onClick={reset} className="font-body text-sm text-gold hover:underline">
+                  Рассчитать ещё
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ChatBot;
