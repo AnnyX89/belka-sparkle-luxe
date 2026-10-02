@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import p1 from "@/assets/portfolio-1.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
@@ -8,10 +9,17 @@ import p6 from "@/assets/portfolio-6.jpg";
 import p7 from "@/assets/portfolio-7.jpg";
 import p8 from "@/assets/portfolio-8.jpg";
 import p9 from "@/assets/portfolio-9.jpg";
+import p10 from "@/assets/portfolio-10.jpg";
+import p11 from "@/assets/portfolio-11.jpg";
+import p12 from "@/assets/portfolio-12.jpg";
 import p13 from "@/assets/portfolio-13.jpg";
+import p14 from "@/assets/portfolio-14.jpg";
 import p15 from "@/assets/portfolio-15.jpg";
+import pSofa from "@/assets/portfolio-sofa.jpg";
 
-const photos = [p2, p3, p4, p5, p6, p7, p8, p9, p13, p15];
+const photos = [
+  p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, pSofa,
+];
 
 const GallerySection = () => {
   const [current, setCurrent] = useState(0);
