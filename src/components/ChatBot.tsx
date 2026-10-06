@@ -164,7 +164,7 @@ const ChatBot = () => {
                 <BotMessage
                   text={`Отлично! ${services[serviceIdx].label}, ${area} м² — ≈ ${price.toLocaleString(
                     "ru-RU"
-                  )} ₽. Оставьте контакт, и Аня свяжется с вами:`}
+                  )} ₽. Оставьте контакт, и Анна свяжется с вами:`}
                 />
 
                 <div>
@@ -218,7 +218,7 @@ const ChatBot = () => {
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-foreground">Спасибо!</h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  Ваша заявка принята, Аня свяжется с вами в течение 15 минут
+                  Ваша заявка принята, Анна свяжется с вами в течение 15 минут
                 </p>
                 <button onClick={reset} className="font-body text-sm text-gold hover:underline">
                   Рассчитать ещё
