@@ -8,7 +8,7 @@ const services = [
   { label: "Премиум-поддержание", pricePerM2: 120 },
 ];
 
-const WEBHOOK_URL = "http://205.196.80.138:8000/webhook";
+const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 
 const BotMessage = ({ text }: { text: string }) => (
   <div className="flex gap-2">
