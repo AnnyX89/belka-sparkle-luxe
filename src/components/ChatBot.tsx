@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, Phone, CheckCircle2, Squirrel } from "lucide-react";
 import logo from "@/assets/belkaclean-logo.jpg";
 
@@ -9,6 +9,9 @@ const services = [
 ];
 
 const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
+
+/** Открыть форму заявки из любого места сайта: window.dispatchEvent(new Event(OPEN_BOOKING_EVENT)) */
+export const OPEN_BOOKING_EVENT = "belka:open-booking";
 
 const BotMessage = ({ text }: { text: string }) => (
   <div className="flex gap-2">
@@ -31,6 +34,15 @@ const ChatBot = () => {
   const [sending, setSending] = useState(false);
 
   const price = services[serviceIdx].pricePerM2 * area;
+
+  useEffect(() => {
+    const openBooking = () => {
+      setStep((s) => (s === "submitted" ? "calculator" : s));
+      setOpen(true);
+    };
+    window.addEventListener(OPEN_BOOKING_EVENT, openBooking);
+    return () => window.removeEventListener(OPEN_BOOKING_EVENT, openBooking);
+  }, []);
 
   const reset = () => {
     setStep("calculator");
@@ -93,7 +105,7 @@ const ChatBot = () => {
             </div>
           </div>
 
-          <div className="p-5 max-h-[420px] overflow-y-auto">
+          <div className="p-5 max-h-[min(420px,55vh)] overflow-y-auto">
             {step === "calculator" && (
               <div className="space-y-5">
                 <BotMessage text="Привет! 🐿️ Рассчитайте стоимость клининга прямо сейчас:" />
@@ -141,21 +153,6 @@ const ChatBot = () => {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => setStep("booking")}
-                  className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity"
-                >
-                  Забронировать уборку
-                </button>
-
-                <a
-                  href="https://t.me/BelkaAnny89"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center font-body text-sm text-gold hover:underline"
-                >
-                  💬 Написать в Telegram
-                </a>
               </div>
             )}
 
@@ -226,6 +223,25 @@ const ChatBot = () => {
               </div>
             )}
           </div>
+
+          {step === "calculator" && (
+            <div className="border-t border-border bg-background p-4 space-y-2">
+              <button
+                onClick={() => setStep("booking")}
+                className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity"
+              >
+                Забронировать уборку · {price.toLocaleString("ru-RU")} ₽
+              </button>
+              <a
+                href="https://t.me/BelkaAnny89"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center font-body text-sm text-gold hover:underline"
+              >
+                💬 Написать в Telegram
+              </a>
+            </div>
+          )}
         </div>
       )}
     </>

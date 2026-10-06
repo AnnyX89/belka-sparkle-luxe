@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import heroImage from "@/assets/hero-interior.jpg";
 import logo from "@/assets/belkaclean-logo.jpg";
+import { OPEN_BOOKING_EVENT } from "@/components/ChatBot";
 
 const HeroSection = () => {
   useEffect(() => {
@@ -54,14 +55,13 @@ const HeroSection = () => {
             Специализируемся на дизайнерских интерьерах и сложных послестроях в Челябинске более 6 лет
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://t.me/BelkaAnny89"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_BOOKING_EVENT))}
               className="gradient-gold text-primary-foreground font-body font-semibold px-8 py-4 rounded-lg text-lg shadow-gold hover:opacity-90 transition-opacity"
             >
-              Рассчитать стоимость по видеообзору
-            </a>
+              Рассчитать стоимость и записаться
+            </button>
             <a
               href="tel:89642423000"
               className="border border-gold/50 text-primary-foreground/90 font-body px-8 py-4 rounded-lg text-lg hover:bg-gold/10 transition-colors"
@@ -69,6 +69,14 @@ const HeroSection = () => {
               8 (964) 242-30-00
             </a>
           </div>
+          <a
+            href="https://t.me/BelkaAnny89"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-block font-body text-sm text-primary-foreground/80 underline-offset-4 hover:text-gold hover:underline"
+          >
+            или пришлите видеообзор в Telegram — рассчитаем точнее
+          </a>
         </div>
       </div>
 
