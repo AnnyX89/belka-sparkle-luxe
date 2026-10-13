@@ -5,7 +5,7 @@ import { OPEN_BOOKING_EVENT } from "@/components/ChatBot";
 
 const HeroSection = () => {
   useEffect(() => {
-    document.title = "БелкаClean — Экспертный клининг в Челябинске";
+    document.title = "Клининг в Челябинске — уборка квартир, после ремонта, мойка окон | БелкаClean";
   }, []);
 
   return (

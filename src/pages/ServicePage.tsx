@@ -30,10 +30,19 @@ const ServicePage = () => {
   }, [service]);
 
   if (!service) return <NotFound />;
+  // разметка услуги для Яндекса/Google: название, город, цена «от», организация
+  const minPrice = Number((service.price.match(/\d[\d\s]*/)?.[0] || "0").replace(/\s/g, ""));
+  const serviceLd = {
+    "@context": "https://schema.org", "@type": "Service", name: service.title, serviceType: service.title,
+    description: service.seoDescription, areaServed: { "@type": "City", name: "Челябинск" },
+    provider: { "@id": "https://belkaclean74.ru/#business" },
+    offers: { "@type": "Offer", priceCurrency: "RUB", price: minPrice, description: service.price },
+  };
   const others = SERVICES.filter((s) => s.slug !== service.slug);
 
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={service.hero} alt="" className="w-full h-full object-cover" />
