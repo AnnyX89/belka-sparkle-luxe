@@ -3,6 +3,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import GallerySection from "@/components/GallerySection";
+import ReviewsSection from "@/components/ReviewsSection";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 
@@ -14,6 +15,7 @@ const Index = () => {
       <ServicesSection />
       <AboutSection />
       <GallerySection />
+      <ReviewsSection />
       <Footer />
       <ChatBot />
     </div>

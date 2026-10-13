@@ -3,9 +3,21 @@ import { Link, useParams } from "react-router-dom";
 import { Check, ShieldCheck, Camera, Clock, ArrowLeft } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import Footer from "@/components/Footer";
+import ReviewsSection from "@/components/ReviewsSection";
 import ChatBot, { openBooking } from "@/components/ChatBot";
 import NotFound from "@/pages/NotFound";
 import { GUARANTEE, SERVICES, findService } from "@/data/services";
+
+// отзывы на странице услуги: match — о ней, related — о похожих (по объявлению на Авито и тексту отзыва)
+const CLEANING_AD = /клининг|уборк/i;
+const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp }> = {
+  "generalnaya-uborka": { match: /генеральн|всю квартиру|отмыли (всё|все|квартиру)/i, related: CLEANING_AD },
+  "podderzhivayushchaya-uborka": { match: /поддерж|регулярн|постоянн/i, related: CLEANING_AD },
+  "uborka-posle-remonta": { match: /ремонт|строит|новострой|застройщик/i, related: CLEANING_AD },
+  "moyka-okon": { match: /окон|окна|балкон|стекл/i },
+  "himchistka-mebeli": { match: /химчист|диван|кресл|матрас|ковр/i },
+  "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },
+};
 
 const setMeta = (name: string, content: string) => {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
@@ -133,7 +145,9 @@ const ServicePage = () => {
         </div>
       </section>
 
-      <section className="pb-24">
+      <ReviewsSection {...REVIEWS_FOR[service.slug]} />
+
+      <section className="py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <h2 className="font-heading text-2xl font-semibold mb-6">Другие услуги</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

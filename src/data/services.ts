@@ -13,7 +13,7 @@ import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
 import hero5 from "@/assets/hero_fasady.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
-import p9 from "@/assets/portfolio-9.jpg";
+import p6 from "@/assets/portfolio-6.jpg";
 import p10 from "@/assets/portfolio-10.jpg";
 import p11 from "@/assets/portfolio-11.jpg";
 import p12 from "@/assets/portfolio-12.jpg";
@@ -72,7 +72,7 @@ export const SERVICES: ServiceDirection[] = [
     title: "Поддерживающая уборка",
     price: "от 100 ₽/м²",
     offer: "Регулярная уборка — дома всегда чисто, а вы не тратите на это время",
-    subtitle: "Приезжаем по удобному графику: раз в неделю или две. Одна и та же команда, которая знает ваш дом.",
+    subtitle: "Приезжаем по удобному графику: раз в неделю или две. Одна и та же команда, которая знает ваш дом и все его нюансы.",
     benefit: "Дома всегда чисто — без ваших усилий",
     includes: [
       "Влажная уборка всех доступных поверхностей",
@@ -86,7 +86,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Холодильник / духовка", price: "от 1 200 ₽" },
     ],
     forWhom: ["Занятым людям и семьям с детьми", "Владельцам питомцев", "Офисам и небольшим помещениям"],
-    image: p3,
+    image: p6,
     calcIdx: 0,
     seoTitle: "Поддерживающая уборка в Челябинске — БелкаClean",
     seoDescription: "Регулярная поддерживающая уборка квартир и офисов в Челябинске от 100 ₽/м². Удобный график, одна команда.",
@@ -112,7 +112,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["После ремонта и отделки", "Новостройки перед заездом", "Перед сдачей объекта заказчику"],
-    image: p9,
+    image: p3,
     calcIdx: 2,
     seoTitle: "Уборка после ремонта в Челябинске — БелкаClean",
     seoDescription: "Уборка после ремонта и строительства в Челябинске от 200 ₽/м². Удаляем строительную пыль, краску и цемент бережно к отделке.",
