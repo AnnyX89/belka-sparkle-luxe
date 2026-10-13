@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ShieldCheck, ArrowRight, Building2 } from "lucide-react";
-import { GUARANTEE, SERVICES } from "@/data/services";
+import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ArrowRight, Building2 } from "lucide-react";
+import { SERVICES } from "@/data/services";
 
 const ICONS: Record<string, typeof Sparkles> = {
   "generalnaya-uborka": Sparkles,
@@ -41,13 +41,6 @@ const ServicesSection = () => (
             </Link>
           );
         })}
-      </div>
-      <div className="max-w-6xl mx-auto mt-6 rounded-xl p-6 border border-gold/30 bg-gold/5 flex flex-col sm:flex-row sm:items-center gap-4">
-        <ShieldCheck className="w-10 h-10 text-gold shrink-0" />
-        <div>
-          <h3 className="font-heading text-lg font-semibold mb-1">Гарантия результата</h3>
-          <p className="font-body text-sm text-foreground/80 leading-relaxed">{GUARANTEE}</p>
-        </div>
       </div>
     </div>
   </section>
