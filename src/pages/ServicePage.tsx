@@ -10,10 +10,10 @@ import { GUARANTEE, SERVICES, findService } from "@/data/services";
 
 // отзывы на странице услуги: match — о ней, related — о похожих (по объявлению на Авито и тексту отзыва)
 const CLEANING_AD = /клининг|уборк/i;
-const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp }> = {
-  "generalnaya-uborka": { match: /генеральн|всю квартиру|отмыли (всё|все|квартиру)/i, related: CLEANING_AD },
-  "podderzhivayushchaya-uborka": { match: /поддерж|регулярн|постоянн/i, related: CLEANING_AD },
-  "uborka-posle-remonta": { match: /после ремонт|ремонта|строительн|стройк/i, related: CLEANING_AD },
+const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp; excludeAd?: RegExp }> = {
+  "generalnaya-uborka": { match: /генеральн|всю квартиру|отмыли (всё|все|квартиру)/i, related: CLEANING_AD , excludeAd: /Мытьё окон|Химчистка мягкой/i },
+  "podderzhivayushchaya-uborka": { match: /поддерж|регулярн|постоянн/i, related: CLEANING_AD , excludeAd: /Мытьё окон|Химчистка мягкой/i },
+  "uborka-posle-remonta": { match: /после ремонт|ремонта|строительн|стройк/i, related: CLEANING_AD , excludeAd: /Мытьё окон|Химчистка мягкой/i },
   "moyka-okon": { match: /окон|окна|балкон|стекл/i },
   "himchistka-mebeli": { match: /химчист|диван|кресл|матрас|ковр/i },
   "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },

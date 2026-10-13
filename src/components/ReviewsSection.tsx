@@ -9,19 +9,21 @@ const PAGE = 6;
 
 /** Настоящие отзывы с Авито: /reviews.json обновляет сервер раз в день (avito_reviews_export.py) */
 /** На странице услуги: сначала отзывы о ней (по объявлению и тексту), потом — о похожих, потом остальные */
-const ReviewsSection = ({ match, related }: { match?: RegExp; related?: RegExp }) => {
+const ReviewsSection = ({ match, related, excludeAd }: { match?: RegExp; related?: RegExp; excludeAd?: RegExp }) => {
   const [data, setData] = useState<ReviewsData | null>(null);
   const [shown, setShown] = useState(PAGE);
   useEffect(() => {
     fetch("/reviews.json", { cache: "no-cache" }).then(r => (r.ok ? r.json() : null)).then(setData).catch(() => setData(null));
   }, []);
   if (!data || data.reviews.length === 0) return null;
+  // отзывы с объявлений другой услуги (например, окна на странице «после ремонта») не показываем
+  const pool = excludeAd ? data.reviews.filter(r => !excludeAd.test(r.service)) : data.reviews;
   const score = (r: Review) => {
     const t = `${r.service} ${r.text}`;
     return match?.test(t) ? 2 : related?.test(t) ? 1 : 0;
   };
-  const sorted = match ? [...data.reviews].sort((a, b) => score(b) - score(a)) : data.reviews;
-  const about = match ? data.reviews.filter(r => match.test(`${r.service} ${r.text}`)).length : 0;
+  const sorted = match ? [...pool].sort((a, b) => score(b) - score(a)) : pool;
+  const about = match ? pool.filter(r => match.test(`${r.service} ${r.text}`)).length : 0;
   const list = sorted.slice(0, shown);
   return (
     <section id="reviews" className="py-24 bg-ivory">
