@@ -2,11 +2,44 @@ import { useEffect, useState } from "react";
 import { X, Phone, CheckCircle2, Squirrel } from "lucide-react";
 import logo from "@/assets/belkaclean-logo.jpg";
 
+/** Прайс как в CRM (src/lib/priceList.ts в belka-srm) — всё «от», зависит от степени загрязнения */
 const services = [
+  { label: "Поддерживающая уборка", pricePerM2: 100 },
   { label: "Генеральная уборка", pricePerM2: 150 },
-  { label: "Послеремонтный клининг", pricePerM2: 200 },
-  { label: "Премиум-поддержание", pricePerM2: 120 },
+  { label: "Уборка после ремонта", pricePerM2: 200 },
+  { label: "Мойка окон и балконов", pricePerM2: 0 },
+  { label: "Химчистка мебели", pricePerM2: 0 },
 ];
+const MIN_ORDER = 5000;
+
+type Extra = { id: string; label: string; price: number; unit: string; qty?: boolean; min?: number };
+const CLEANING_EXTRAS: Extra[] = [
+  { id: "kitchen", label: "Кухонный гарнитур снаружи", price: 2500, unit: "шт" },
+  { id: "drawers", label: "Шкафы и ящики внутри", price: 150, unit: "ящик", qty: true },
+  { id: "oven", label: "Духовка", price: 1200, unit: "шт" },
+  { id: "fridge", label: "Холодильник", price: 1200, unit: "шт" },
+  { id: "microwave", label: "Микроволновка", price: 350, unit: "шт" },
+  { id: "sash", label: "Окна", price: 400, unit: "створка", qty: true },
+  { id: "balcony", label: "Балкон (пол, стены)", price: 2500, unit: "шт" },
+];
+const WINDOW_EXTRAS: Extra[] = [
+  { id: "sash", label: "Створки окон", price: 400, unit: "створка", qty: true },
+  { id: "balcony_glass", label: "Остекление балкона", price: 500, unit: "створка", qty: true, min: 3000 },
+  { id: "panoramic", label: "Панорамное остекление", price: 1000, unit: "секция", qty: true },
+  { id: "balcony", label: "Балкон (пол, стены)", price: 2500, unit: "шт" },
+  { id: "mosquito", label: "Москитные сетки", price: 100, unit: "шт", qty: true },
+];
+const FURNITURE_EXTRAS: Extra[] = [
+  { id: "sofa2", label: "Диван 2-местный", price: 4000, unit: "шт", qty: true },
+  { id: "sofa_corner", label: "Диван угловой", price: 6000, unit: "шт", qty: true },
+  { id: "armchair", label: "Кресло", price: 2000, unit: "шт", qty: true },
+  { id: "chair", label: "Стул", price: 500, unit: "шт", qty: true },
+  { id: "mattress1", label: "Матрас односпальный", price: 2000, unit: "шт", qty: true },
+  { id: "mattress2", label: "Матрас двуспальный", price: 3000, unit: "шт", qty: true },
+  { id: "carpet", label: "Ковёр, палас", price: 450, unit: "м²", qty: true },
+  { id: "drying", label: "Сушка после химчистки", price: 1000, unit: "шт", qty: true },
+];
+const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : CLEANING_EXTRAS);
 
 const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 
@@ -33,7 +66,19 @@ const ChatBot = () => {
   const [phone, setPhone] = useState("");
   const [sending, setSending] = useState(false);
 
-  const price = services[serviceIdx].pricePerM2 * area;
+  const [picked, setPicked] = useState<Record<string, number>>({});
+  const hasArea = services[serviceIdx].pricePerM2 > 0;
+  const extras = extrasFor(serviceIdx);
+  const extrasSum = extras.reduce((s, e) => {
+    const q = picked[e.id] || 0;
+    return q > 0 ? s + Math.max(e.price * q, e.min ?? 0) : s;
+  }, 0);
+  const rawPrice = (hasArea ? services[serviceIdx].pricePerM2 * area : 0) + extrasSum;
+  const price = rawPrice > 0 ? Math.max(rawPrice, MIN_ORDER) : 0;
+  const pickedLabels = extras.filter((e) => (picked[e.id] || 0) > 0)
+    .map((e) => (e.qty ? `${e.label} × ${picked[e.id]}` : e.label));
+  const summary = [services[serviceIdx].label + (hasArea ? `, ${area} м²` : ""), ...pickedLabels].join(" + ");
+  const setQty = (id: string, q: number) => setPicked((p) => ({ ...p, [id]: Math.max(0, q) }));
 
   useEffect(() => {
     const openBooking = () => {
@@ -48,6 +93,7 @@ const ChatBot = () => {
     setStep("calculator");
     setServiceIdx(0);
     setArea(80);
+    setPicked({});
     setName("");
     setPhone("");
   };
@@ -62,8 +108,8 @@ const ChatBot = () => {
         body: JSON.stringify({
           name: name.trim(),
           phone: phone.trim(),
-          service: services[serviceIdx].label,
-          area,
+          service: summary,
+          area: hasArea ? area : undefined,
           estimatedPrice: price,
         }),
       });
@@ -114,7 +160,7 @@ const ChatBot = () => {
                   <label className="font-body text-xs text-muted-foreground mb-1.5 block">Тип услуги</label>
                   <select
                     value={serviceIdx}
-                    onChange={(e) => setServiceIdx(Number(e.target.value))}
+                    onChange={(e) => { setServiceIdx(Number(e.target.value)); setPicked({}); }}
                     className="w-full font-body text-sm px-4 py-3 rounded-lg border border-border bg-background focus:border-gold focus:outline-none appearance-none"
                   >
                     {services.map((s, i) => (
@@ -125,7 +171,7 @@ const ChatBot = () => {
                   </select>
                 </div>
 
-                <div>
+                {hasArea && <div>
                   <label className="font-body text-xs text-muted-foreground mb-1.5 flex justify-between">
                     <span>Площадь</span>
                     <span className="text-gold font-semibold">{area} м²</span>
@@ -143,13 +189,44 @@ const ChatBot = () => {
                     <span>30 м²</span>
                     <span>300 м²</span>
                   </div>
+                </div>}
+
+                <div>
+                  <label className="font-body text-xs text-muted-foreground mb-1.5 block">
+                    {hasArea ? "Дополнительно" : "Что нужно"}
+                  </label>
+                  <div className="space-y-1.5">
+                    {extras.map((e) => {
+                      const q = picked[e.id] || 0;
+                      return (
+                        <div key={e.id} className="flex items-center gap-2 min-h-8">
+                          <input type="checkbox" id={`x-${e.id}`} checked={q > 0}
+                            onChange={(ev) => setQty(e.id, ev.target.checked ? 1 : 0)}
+                            className="w-4 h-4 accent-[hsl(38,60%,52%)]" />
+                          <label htmlFor={`x-${e.id}`} className="flex-1 font-body text-sm cursor-pointer leading-tight">
+                            {e.label}
+                            <span className="text-[11px] text-muted-foreground"> · от {e.price.toLocaleString("ru-RU")} ₽/{e.unit}</span>
+                          </label>
+                          {q > 0 && e.qty && (
+                            <input type="number" min={1} value={q} aria-label={`Количество: ${e.label}`}
+                              onChange={(ev) => setQty(e.id, Math.max(1, Number(ev.target.value) || 1))}
+                              className="w-16 font-body text-sm px-2 py-1 rounded-md border border-border bg-background focus:border-gold focus:outline-none" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="bg-cream rounded-xl p-4 text-center">
                   <p className="font-body text-xs text-muted-foreground mb-1">Примерная стоимость</p>
-                  <p className="font-heading text-3xl font-semibold text-gold">{price.toLocaleString("ru-RU")} ₽</p>
-                  <p className="font-body text-[10px] text-muted-foreground mt-1">
-                    {services[serviceIdx].label} · {area} м²
+                  <p className="font-heading text-3xl font-semibold text-gold">
+                    {price > 0 ? `от ${price.toLocaleString("ru-RU")} ₽` : "отметьте, что нужно"}
+                  </p>
+                  <p className="font-body text-[10px] text-muted-foreground mt-1 leading-snug">{summary}</p>
+                  <p className="font-body text-[10px] text-muted-foreground mt-1 leading-snug">
+                    {rawPrice > 0 && rawPrice < MIN_ORDER ? `Минимальный заказ — ${MIN_ORDER.toLocaleString("ru-RU")} ₽. ` : ""}
+                    Зависит от степени загрязнения. Точная стоимость — при оценке по фото или видео.
                   </p>
                 </div>
 
@@ -159,9 +236,7 @@ const ChatBot = () => {
             {step === "booking" && (
               <div className="space-y-4">
                 <BotMessage
-                  text={`Отлично! ${services[serviceIdx].label}, ${area} м² — ≈ ${price.toLocaleString(
-                    "ru-RU"
-                  )} ₽. Оставьте контакт, и Анна свяжется с вами:`}
+                  text={`Отлично! ${summary} — от ${price.toLocaleString("ru-RU")} ₽. Оставьте контакт, и Анна свяжется с вами:`}
                 />
 
                 <div>
@@ -228,9 +303,10 @@ const ChatBot = () => {
             <div className="border-t border-border bg-background p-4 space-y-2">
               <button
                 onClick={() => setStep("booking")}
-                className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity"
+                disabled={price === 0}
+                className="w-full disabled:opacity-50 gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity"
               >
-                Забронировать уборку · {price.toLocaleString("ru-RU")} ₽
+                {price > 0 ? `Забронировать · от ${price.toLocaleString("ru-RU")} ₽` : "Забронировать"}
               </button>
               <a
                 href="https://t.me/BelkaAnny89"
