@@ -11,7 +11,7 @@ import hero2 from "@/assets/hero_uborka-posle-remonta.jpg";
 import hero3 from "@/assets/hero_moyka-okon.jpg";
 import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
 import hero5 from "@/assets/hero_fasady.jpg";
-import p2 from "@/assets/portfolio-2.jpg";
+import p4 from "@/assets/portfolio-4.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p6 from "@/assets/portfolio-6.jpg";
 import p10 from "@/assets/portfolio-10.jpg";
@@ -63,7 +63,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["Перед праздником или приездом гостей", "При переезде и сдаче квартиры", "Раз в сезон — чтобы не копилось"],
-    image: p2,
+    image: p4,
     calcIdx: 1,
     seoTitle: "Генеральная уборка квартир в Челябинске — БелкаClean",
     seoDescription: "Генеральная уборка квартир и домов в Челябинске от 150 ₽/м². Профессиональная химия, свой инвентарь, гарантия результата.",
