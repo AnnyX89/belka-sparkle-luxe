@@ -10,10 +10,12 @@ import hero1 from "@/assets/hero_podderzhivayushchaya-uborka.jpg";
 import hero2 from "@/assets/hero_uborka-posle-remonta.jpg";
 import hero3 from "@/assets/hero_moyka-okon.jpg";
 import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
+import hero5 from "@/assets/hero_fasady.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p9 from "@/assets/portfolio-9.jpg";
 import p10 from "@/assets/portfolio-10.jpg";
+import p11 from "@/assets/portfolio-11.jpg";
 import p12 from "@/assets/portfolio-12.jpg";
 
 export interface ServiceDirection {
@@ -171,6 +173,30 @@ export const SERVICES: ServiceDirection[] = [
     calcIdx: 4,
     seoTitle: "Химчистка мебели на дому в Челябинске — БелкаClean",
     seoDescription: "Химчистка диванов, кресел, матрасов и ковров на дому в Челябинске. Гипоаллергенные средства, сушка, гарантия.",
+  },
+  {
+    slug: "moyka-fasadov",
+    hero: hero5,
+    title: "Мойка фасадов",
+    price: "от 130 ₽/м²",
+    offer: "Мойка фасадов: здание выглядит ухоженно — клиенты замечают это первыми",
+    subtitle: "Моем фасады магазинов, офисов и частных домов: вентилируемые панели, витрины, входные группы. Убираем пыль, копоть, следы объявлений и скотча.",
+    benefit: "Ухоженный фасад — лучшая вывеска для вашего бизнеса",
+    includes: [
+      "Мойка фасадных панелей и облицовки",
+      "Витрины, входные группы и козырьки",
+      "Удаление следов объявлений, клея и скотча",
+      "Подбор химии под материал — без повреждения покрытия",
+    ],
+    prices: [
+      { name: "Мойка фасада", price: "от 130 ₽/м²" },
+      { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
+    ],
+    forWhom: ["Магазинам, салонам и кафе", "Офисным и торговым центрам", "Частным домам и коттеджам"],
+    image: p11,
+    calcIdx: 5,
+    seoTitle: "Мойка фасадов в Челябинске — БелкаClean",
+    seoDescription: "Мойка фасадов, витрин и входных групп в Челябинске от 130 ₽/м². Удаление объявлений и клея, безопасная химия.",
   },
 ];
 

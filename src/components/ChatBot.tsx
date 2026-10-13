@@ -9,6 +9,7 @@ const services = [
   { label: "Уборка после ремонта", pricePerM2: 200 },
   { label: "Мойка окон и балконов", pricePerM2: 0 },
   { label: "Химчистка мебели", pricePerM2: 0 },
+  { label: "Мойка фасадов", pricePerM2: 130 },
 ];
 const MIN_ORDER = 5000;
 
@@ -39,7 +40,10 @@ const FURNITURE_EXTRAS: Extra[] = [
   { id: "carpet", label: "Ковёр, палас", price: 450, unit: "м²", qty: true },
   { id: "drying", label: "Сушка после химчистки", price: 1000, unit: "шт", qty: true },
 ];
-const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : CLEANING_EXTRAS);
+const FACADE_EXTRAS: Extra[] = [
+  { id: "panoramic", label: "Витражи и витрины", price: 1000, unit: "секция", qty: true },
+];
+const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : idx === 5 ? FACADE_EXTRAS : CLEANING_EXTRAS);
 
 const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 
@@ -184,7 +188,7 @@ const ChatBot = () => {
                   <input
                     type="range"
                     min={30}
-                    max={300}
+                    max={serviceIdx === 5 ? 1000 : 300}
                     step={5}
                     value={area}
                     onChange={(e) => setArea(Number(e.target.value))}
@@ -192,7 +196,7 @@ const ChatBot = () => {
                   />
                   <div className="flex justify-between font-body text-[10px] text-muted-foreground mt-1">
                     <span>30 м²</span>
-                    <span>300 м²</span>
+                    <span>{serviceIdx === 5 ? 1000 : 300} м²</span>
                   </div>
                 </div>}
 
