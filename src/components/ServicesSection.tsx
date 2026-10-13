@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ArrowRight, Building2 } from "lucide-react";
+import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ArrowRight, Building2, CalendarCheck, MapPin, Users, Clock } from "lucide-react";
 import { SERVICES } from "@/data/services";
 
 const ICONS: Record<string, typeof Sparkles> = {
@@ -41,6 +41,22 @@ const ServicesSection = () => (
             </Link>
           );
         })}
+      </div>
+      <div className="max-w-6xl mx-auto mt-6 rounded-xl border border-gold/30 bg-gold/5 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden">
+        {[
+          { icon: CalendarCheck, big: "6+ лет", small: "на рынке Челябинска" },
+          { icon: MapPin, big: "Выезд", small: "по Челябинску и пригороду" },
+          { icon: Users, big: "Своя команда", small: "без посредников" },
+          { icon: Clock, big: "7 дней в неделю", small: "с 8:00 до 21:00" },
+        ].map((f) => (
+          <div key={f.big} className="flex items-center gap-3 p-5 bg-background/60">
+            <f.icon className="w-8 h-8 text-gold shrink-0" />
+            <div>
+              <p className="font-heading text-lg font-semibold leading-tight">{f.big}</p>
+              <p className="font-body text-sm text-muted-foreground">{f.small}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
