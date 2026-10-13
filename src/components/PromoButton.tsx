@@ -36,9 +36,9 @@ const PromoButton = () => {
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} aria-label="Акции"
-        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 rounded-full gradient-gold text-primary-foreground font-body text-lg font-bold uppercase tracking-wide px-7 py-5 shadow-[0_8px_32px_hsl(38_60%_52%/0.45)] border-2 border-white hover:scale-105 transition-transform">
+        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 rounded-full gradient-gold text-primary-foreground font-body text-base font-bold uppercase tracking-wide px-6 py-4 shadow-[0_8px_32px_hsl(38_60%_52%/0.45)] border-2 border-white hover:scale-105 transition-transform">
         <span className="absolute inset-0 rounded-full animate-ping bg-gold/40 -z-10" />
-        <Gift className="w-6 h-6" /> Акции!
+        <Gift className="w-5 h-5" /> Акции!
       </button>
 
       {open && (
