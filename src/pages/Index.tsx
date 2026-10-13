@@ -1,3 +1,4 @@
+import PromoButton from "@/components/PromoButton";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -18,6 +19,7 @@ const Index = () => {
       <ReviewsSection />
       <Footer />
       <ChatBot />
+      <PromoButton />
     </div>
   );
 };

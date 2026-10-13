@@ -27,11 +27,10 @@ const HeroSection = () => {
             <span className="text-gold font-heading text-lg tracking-[0.3em] uppercase">Челябинск · с 2018 года</span>
           </div>
           <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-semibold text-primary-foreground mb-6 leading-tight">
-            <span className="text-gold">Чистый дом</span> без ваших выходных
+            <span className="text-gold">Чисто за один день.</span> Цена заранее. Гарантия результата
           </h1>
           <p className="font-body text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Уборка квартир, домов и офисов в Челябинске от 100 ₽/м². Своя профессиональная химия, цену называем заранее,
-            а если что-то не понравится — переделаем бесплатно
+            Уборка квартир, домов и офисов в Челябинске от 100 ₽/м²
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button

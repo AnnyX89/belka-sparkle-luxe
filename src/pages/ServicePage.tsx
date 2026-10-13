@@ -1,3 +1,4 @@
+import PromoButton from "@/components/PromoButton";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Check, ShieldCheck, Camera, Clock, ArrowLeft } from "lucide-react";
@@ -172,6 +173,7 @@ const ServicePage = () => {
 
       <Footer />
       <ChatBot />
+      <PromoButton />
     </div>
   );
 };
