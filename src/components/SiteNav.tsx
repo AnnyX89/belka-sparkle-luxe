@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/belkaclean-logo.jpg";
 import { SERVICES } from "@/data/services";
 
 /** Шапка сайта: «Услуги» раскрывает плашку со списком направлений (у каждого своя страница) */
 const SiteNav = ({ onHome = true }: { onHome?: boolean }) => {
   const [open, setOpen] = useState(false);
+  const [mobile, setMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const close = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
@@ -51,7 +52,53 @@ const SiteNav = ({ onHome = true }: { onHome?: boolean }) => {
             8 (964) 242-30-00
           </a>
         </div>
+
+        {/* Телефон: кнопка звонка + меню */}
+        <div className="flex md:hidden items-center gap-2">
+          <a href="tel:89642423000" aria-label="Позвонить" className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center text-gold">
+            <Phone className="w-5 h-5" />
+          </a>
+          <button type="button" onClick={() => setMobile(true)} aria-label="Открыть меню"
+            className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center text-primary-foreground">
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
       </div>
+
+      {mobile && (
+        <div className="fixed inset-0 z-50 md:hidden bg-foreground/95 backdrop-blur overflow-y-auto">
+          <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+            <span className="font-heading text-xl font-semibold text-primary-foreground"><span className="text-gold">Белка</span>Clean</span>
+            <button type="button" onClick={() => setMobile(false)} aria-label="Закрыть меню"
+              className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center text-primary-foreground">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="container mx-auto px-6 pb-10">
+            <p className="font-body text-xs tracking-[0.3em] uppercase text-gold mt-4 mb-2">Услуги</p>
+            {SERVICES.map((s) => (
+              <Link key={s.slug} to={`/uslugi/${s.slug}`} onClick={() => setMobile(false)}
+                className="flex items-center justify-between py-3 border-b border-primary-foreground/10">
+                <span className="font-body text-base text-primary-foreground">{s.title}</span>
+                <span className="font-body text-xs text-gold">{s.price}</span>
+              </Link>
+            ))}
+            <div className="mt-6 space-y-1">
+              {[["benefits", "Преимущества"], ["about", "О нас"], ["gallery", "Результаты"]].map(([id, label]) => (
+                <a key={id} href={anchor(id)} onClick={() => setMobile(false)}
+                  className="block py-3 font-body text-base text-primary-foreground/80">{label}</a>
+              ))}
+            </div>
+            <a href="tel:89642423000" className="mt-6 block text-center gradient-gold text-primary-foreground font-body font-semibold py-4 rounded-lg">
+              Позвонить: 8 (964) 242-30-00
+            </a>
+            <a href="https://t.me/BelkaAnny89" target="_blank" rel="noopener noreferrer"
+              className="mt-3 block text-center border border-gold/50 text-primary-foreground font-body py-4 rounded-lg">
+              Написать в Telegram
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
