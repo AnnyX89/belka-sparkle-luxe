@@ -45,6 +45,9 @@ const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 
 /** Открыть форму заявки из любого места сайта: window.dispatchEvent(new Event(OPEN_BOOKING_EVENT)) */
 export const OPEN_BOOKING_EVENT = "belka:open-booking";
+/** Открыть калькулятор сразу с нужной услугой (индекс в services) */
+export const openBooking = (serviceIdx?: number) =>
+  window.dispatchEvent(new CustomEvent(OPEN_BOOKING_EVENT, { detail: { serviceIdx } }));
 
 const BotMessage = ({ text }: { text: string }) => (
   <div className="flex gap-2">
@@ -81,7 +84,9 @@ const ChatBot = () => {
   const setQty = (id: string, q: number) => setPicked((p) => ({ ...p, [id]: Math.max(0, q) }));
 
   useEffect(() => {
-    const openBooking = () => {
+    const openBooking = (e: Event) => {
+      const idx = (e as CustomEvent<{ serviceIdx?: number }>).detail?.serviceIdx;
+      if (typeof idx === "number") { setServiceIdx(idx); setPicked({}); }
       setStep((s) => (s === "submitted" ? "calculator" : s));
       setOpen(true);
     };
