@@ -133,16 +133,16 @@ const ChatBot = () => {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-24 h-24 rounded-full gradient-gold shadow-[0_8px_32px_hsl(38_60%_52%/0.4)] flex items-center justify-center hover:scale-110 transition-all duration-300 border-4 border-white"
+        className={`fixed bottom-6 right-6 z-50 flex items-center justify-center gap-2 rounded-full gradient-gold text-white border-2 border-white shadow-[0_8px_32px_hsl(38_60%_52%/0.45)] hover:scale-105 transition-transform ${open ? "w-16 h-16" : "pl-2 pr-6 py-2"}`}
         aria-label="Открыть калькулятор"
       >
         {open ? (
-          <X className="w-10 h-10 text-white" />
+          <X className="w-8 h-8" />
         ) : (
-          <div className="flex flex-col items-center gap-1">
-            <img src={logo} alt="Белка" className="w-12 h-12 rounded-full object-cover border-2 border-white" />
-            <span className="text-white text-[10px] font-bold uppercase tracking-wide">Заказать</span>
-          </div>
+          <>
+            <img src={logo} alt="" className="w-12 h-12 rounded-full object-cover border-2 border-white" />
+            <span className="font-body text-base font-bold uppercase tracking-wide">Заказать</span>
+          </>
         )}
       </button>
 
