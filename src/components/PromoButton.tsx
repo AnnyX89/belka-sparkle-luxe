@@ -9,7 +9,7 @@ const PROMOS = [
     title: "Белка собирает орешки — собирай и ты! 🐿",
     text: [
       "Приводи друзей — 10-я уборка бесплатно. Каждый приведённый друг — 1 орешек 🌰",
-      "1 орешек — скидка 10%, 4 орешка — 40%, 10 орешков — 10-я уборка бесплатно 🎁",
+      "1 орешек — скидка 10%, 4 орешка — 40%, 10 орешков — 10-я уборка бесплатно* 🎁",
       "Другу — скидка 15% на первую уборку от 12 000 ₽. Пусть просто назовёт ваше имя при заказе.",
     ],
   },
@@ -68,7 +68,10 @@ const PromoButton = () => {
               <p className="font-body text-base font-semibold text-foreground rounded-lg bg-gold/10 border border-gold/30 px-3 py-2">
                 ⚠️ Акции не суммируются — действует одна, самая выгодная для вас.
               </p>
-              <p className="font-body text-sm text-muted-foreground">Подробности — по телефону 8 (964) 242-30-00.</p>
+              <p className="font-body text-sm text-muted-foreground">
+                * Бесплатная уборка — в пределах лимита по площади и виду уборки. Подробные условия акции уточняйте
+                в личных сообщениях или по телефону 8 (964) 242-30-00.
+              </p>
               <button type="button" onClick={() => { setOpen(false); openBooking(); }}
                 className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90">
                 Рассчитать стоимость
