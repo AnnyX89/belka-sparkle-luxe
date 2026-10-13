@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Check, ShieldCheck, Camera, Clock, ArrowLeft } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
+import heroImage from "@/assets/hero-interior.jpg";
 import Footer from "@/components/Footer";
 import ChatBot, { openBooking } from "@/components/ChatBot";
 import NotFound from "@/pages/NotFound";
@@ -36,7 +37,7 @@ const ServicePage = () => {
     <div className="min-h-screen bg-background">
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <img src={heroImage} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/75 via-foreground/55 to-foreground/80" />
         </div>
         <SiteNav onHome={false} />
@@ -100,6 +101,15 @@ const ServicePage = () => {
       </section>
 
       <section className="py-20">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">До и после</h2>
+          <p className="font-body text-muted-foreground mb-8">Реальная работа нашей команды</p>
+          <img src={service.image} alt={`${service.title}: до и после`} loading="lazy"
+            className="mx-auto max-h-[560px] w-auto rounded-2xl shadow-gold object-contain" />
+        </div>
+      </section>
+
+      <section className="pb-20">
         <div className="container mx-auto px-6 grid sm:grid-cols-3 gap-6 max-w-6xl">
           {[
             { icon: ShieldCheck, title: "Гарантия результата", text: GUARANTEE },

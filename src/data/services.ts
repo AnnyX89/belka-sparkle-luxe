@@ -3,11 +3,12 @@
  * Цены — как в CRM (belka-srm/src/lib/priceList.ts) и у Авито-бота, всё «от», зависит от степени загрязнения.
  * calcIdx — какую услугу выбрать в калькуляторе (порядок services в ChatBot.tsx).
  */
-import p1 from "@/assets/portfolio-1.jpg";
+// Коллажи «до / после» из портфолио — показываются целиком в блоке «До и после» на странице услуги
+import p2 from "@/assets/portfolio-2.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
-import p5 from "@/assets/portfolio-5.jpg";
-import p8 from "@/assets/portfolio-8.jpg";
-import pSofa from "@/assets/portfolio-sofa.jpg";
+import p9 from "@/assets/portfolio-9.jpg";
+import p10 from "@/assets/portfolio-10.jpg";
+import p12 from "@/assets/portfolio-12.jpg";
 
 export interface ServiceDirection {
   slug: string;
@@ -19,7 +20,7 @@ export interface ServiceDirection {
   includes: string[];
   prices: { name: string; price: string }[];
   forWhom: string[];
-  image: string;
+  image: string;         // коллаж «до / после» по этой услуге
   calcIdx: number;
   seoTitle: string;
   seoDescription: string;
@@ -50,7 +51,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["Перед праздником или приездом гостей", "При переезде и сдаче квартиры", "Раз в сезон — чтобы не копилось"],
-    image: p1,
+    image: p2,
     calcIdx: 1,
     seoTitle: "Генеральная уборка квартир в Челябинске — БелкаClean",
     seoDescription: "Генеральная уборка квартир и домов в Челябинске от 150 ₽/м². Профессиональная химия, свой инвентарь, гарантия результата.",
@@ -99,7 +100,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["После ремонта и отделки", "Новостройки перед заездом", "Перед сдачей объекта заказчику"],
-    image: p5,
+    image: p9,
     calcIdx: 2,
     seoTitle: "Уборка после ремонта в Челябинске — БелкаClean",
     seoDescription: "Уборка после ремонта и строительства в Челябинске от 200 ₽/м². Удаляем строительную пыль, краску и цемент бережно к отделке.",
@@ -126,7 +127,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Помыть балкон (пол, стены)", price: "от 2 500 ₽" },
     ],
     forWhom: ["Весной и осенью", "После ремонта фасада или стройки рядом", "Перед продажей или сдачей квартиры"],
-    image: p8,
+    image: p12,
     calcIdx: 3,
     seoTitle: "Мойка окон и балконов в Челябинске — БелкаClean",
     seoDescription: "Мойка окон, балконов и панорамного остекления в Челябинске от 400 ₽ за створку. Без разводов, с гарантией.",
@@ -154,7 +155,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Сушка после химчистки", price: "от 1 000 ₽" },
     ],
     forWhom: ["Семьям с детьми и питомцами", "Аллергикам", "Перед продажей мебели или квартиры"],
-    image: pSofa,
+    image: p10,
     calcIdx: 4,
     seoTitle: "Химчистка мебели на дому в Челябинске — БелкаClean",
     seoDescription: "Химчистка диванов, кресел, матрасов и ковров на дому в Челябинске. Гипоаллергенные средства, сушка, гарантия.",
