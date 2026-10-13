@@ -13,7 +13,7 @@ const CLEANING_AD = /клининг|уборк/i;
 const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp }> = {
   "generalnaya-uborka": { match: /генеральн|всю квартиру|отмыли (всё|все|квартиру)/i, related: CLEANING_AD },
   "podderzhivayushchaya-uborka": { match: /поддерж|регулярн|постоянн/i, related: CLEANING_AD },
-  "uborka-posle-remonta": { match: /ремонт|строит|новострой|застройщик/i, related: CLEANING_AD },
+  "uborka-posle-remonta": { match: /после ремонт|ремонта|строительн|стройк/i, related: CLEANING_AD },
   "moyka-okon": { match: /окон|окна|балкон|стекл/i },
   "himchistka-mebeli": { match: /химчист|диван|кресл|матрас|ковр/i },
   "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },
