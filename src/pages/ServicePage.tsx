@@ -19,6 +19,14 @@ const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp; excludeAd?:
   "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },
 };
 
+// что нужно от клиента и для чего считаем — под каждую услугу
+const ACCESS: Record<string, { access: string; object: string }> = {
+  "moyka-okon": { access: "доступ к окнам", object: "своих окон" },
+  "himchistka-mebeli": { access: "доступ к мебели", object: "своей мебели" },
+  "moyka-fasadov": { access: "доступ к фасаду", object: "своего здания" },
+};
+const accessFor = (slug: string) => ACCESS[slug] ?? { access: "доступ в квартиру", object: "своей квартиры" };
+
 const setMeta = (name: string, content: string) => {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
   if (!el) {
@@ -114,7 +122,7 @@ const ServicePage = () => {
             </p>
             <button type="button" onClick={() => openBooking(service.calcIdx)}
               className="w-full mt-6 gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90 transition-opacity">
-              Посчитать для своей квартиры
+              Посчитать для {accessFor(service.slug).object}
             </button>
           </div>
         </div>
@@ -134,7 +142,7 @@ const ServicePage = () => {
           {[
             { icon: ShieldCheck, title: "Гарантия результата", text: GUARANTEE },
             { icon: Camera, title: "Цена до начала работ", text: "Пришлите фото или видео — назовём стоимость заранее, без сюрпризов на месте." },
-            { icon: Clock, title: "Всё своё", text: "Привозим профессиональную химию и инвентарь. От вас — только доступ в квартиру." },
+            { icon: Clock, title: "Всё своё", text: `Привозим профессиональную химию и инвентарь. От вас — только ${accessFor(service.slug).access}.` },
           ].map((b) => (
             <div key={b.title} className="rounded-2xl border border-gold/20 p-6 bg-background">
               <b.icon className="w-8 h-8 text-gold mb-4" />
