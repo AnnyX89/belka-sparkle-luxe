@@ -36,7 +36,7 @@ const PromoButton = () => {
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} aria-label="Акции"
-        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 rounded-full gradient-gold text-primary-foreground font-body font-bold uppercase tracking-wide px-5 py-3.5 shadow-[0_8px_32px_hsl(38_60%_52%/0.45)] border-2 border-white hover:scale-105 transition-transform">
+        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 rounded-full gradient-gold text-primary-foreground font-body text-base font-bold uppercase tracking-wide px-6 py-4 shadow-[0_8px_32px_hsl(38_60%_52%/0.45)] border-2 border-white hover:scale-105 transition-transform">
         <span className="absolute inset-0 rounded-full animate-ping bg-gold/40 -z-10" />
         <Gift className="w-5 h-5" /> Акции!
       </button>
@@ -48,7 +48,7 @@ const PromoButton = () => {
             <div className="gradient-gold p-5 flex items-center justify-between">
               <div className="flex items-center gap-3 text-primary-foreground">
                 <Gift className="w-7 h-7" />
-                <p className="font-heading text-xl font-semibold">Акции БелкаClean</p>
+                <p className="font-heading text-2xl font-semibold">Акции БелкаClean</p>
               </div>
               <button type="button" onClick={() => setOpen(false)} aria-label="Закрыть"
                 className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-primary-foreground hover:bg-white/30">
@@ -59,16 +59,16 @@ const PromoButton = () => {
               {PROMOS.map((p) => (
                 <div key={p.title} className="rounded-xl border border-border p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <p.icon className="w-5 h-5 text-gold shrink-0" />
-                    <h3 className="font-heading font-semibold">{p.title}</h3>
+                    <p.icon className="w-6 h-6 text-gold shrink-0" />
+                    <h3 className="font-heading text-lg font-semibold">{p.title}</h3>
                   </div>
-                  {p.text.map((t) => <p key={t} className="font-body text-sm text-foreground/80 leading-relaxed mt-1">{t}</p>)}
+                  {p.text.map((t) => <p key={t} className="font-body text-base text-foreground/85 leading-relaxed mt-1.5">{t}</p>)}
                 </div>
               ))}
-              <p className="font-body text-sm font-semibold text-foreground rounded-lg bg-gold/10 border border-gold/30 px-3 py-2">
+              <p className="font-body text-base font-semibold text-foreground rounded-lg bg-gold/10 border border-gold/30 px-3 py-2">
                 ⚠️ Акции не суммируются — действует одна, самая выгодная для вас.
               </p>
-              <p className="font-body text-xs text-muted-foreground">Подробности — по телефону 8 (964) 242-30-00.</p>
+              <p className="font-body text-sm text-muted-foreground">Подробности — по телефону 8 (964) 242-30-00.</p>
               <button type="button" onClick={() => { setOpen(false); openBooking(); }}
                 className="w-full gradient-gold text-primary-foreground font-body font-semibold py-3 rounded-lg shadow-gold hover:opacity-90">
                 Рассчитать стоимость
