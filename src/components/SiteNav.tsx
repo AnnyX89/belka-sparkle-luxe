@@ -15,17 +15,17 @@ const SiteNav = ({ onHome = true }: { onHome?: boolean }) => {
     return () => document.removeEventListener("mousedown", close);
   }, []);
   const anchor = (id: string) => (onHome ? `#${id}` : `/#${id}`);
-  const link = "font-body text-sm text-primary-foreground/80 hover:text-gold transition-colors";
+  const link = "font-body text-base xl:text-lg text-primary-foreground/90 hover:text-gold transition-colors";
   return (
     <nav className="absolute top-0 left-0 right-0 z-30 py-4">
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="w-full px-6 lg:px-12 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="БелкаClean логотип" className="w-12 h-12 rounded-full object-cover border-2 border-gold/30" />
-          <span className="font-heading text-xl font-semibold text-primary-foreground">
+          <img src={logo} alt="БелкаClean логотип" className="w-14 h-14 rounded-full object-cover border-2 border-gold/30" />
+          <span className="font-heading text-2xl font-semibold text-primary-foreground">
             <span className="text-gold">Белка</span>Clean
           </span>
         </Link>
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-8 xl:gap-10 whitespace-nowrap">
           <a href={anchor("benefits")} className={link}>Преимущества</a>
           <div ref={ref} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
             <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}
@@ -48,13 +48,13 @@ const SiteNav = ({ onHome = true }: { onHome?: boolean }) => {
           </div>
           <a href={anchor("about")} className={link}>О нас</a>
           <a href={anchor("gallery")} className={link}>Результаты</a>
-          <a href="tel:89642423000" className="font-body text-sm text-gold border border-gold/40 px-4 py-2 rounded-lg hover:bg-gold/10 transition-colors">
+          <a href="tel:89642423000" className="font-body text-base xl:text-lg text-gold border border-gold/50 px-5 py-2.5 rounded-lg hover:bg-gold/10 transition-colors">
             8 (964) 242-30-00
           </a>
         </div>
 
         {/* Телефон: кнопка звонка + меню */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <a href="tel:89642423000" aria-label="Позвонить" className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center text-gold">
             <Phone className="w-5 h-5" />
           </a>
@@ -66,7 +66,7 @@ const SiteNav = ({ onHome = true }: { onHome?: boolean }) => {
       </div>
 
       {mobile && (
-        <div className="fixed inset-0 z-50 md:hidden bg-foreground/95 backdrop-blur overflow-y-auto">
+        <div className="fixed inset-0 z-50 lg:hidden bg-foreground/95 backdrop-blur overflow-y-auto">
           <div className="container mx-auto px-6 py-4 flex items-center justify-between">
             <span className="font-heading text-xl font-semibold text-primary-foreground"><span className="text-gold">Белка</span>Clean</span>
             <button type="button" onClick={() => setMobile(false)} aria-label="Закрыть меню"
