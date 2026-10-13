@@ -4,6 +4,12 @@
  * calcIdx — какую услугу выбрать в калькуляторе (порядок services в ChatBot.tsx).
  */
 // Коллажи «до / после» из портфолио — показываются целиком в блоке «До и после» на странице услуги
+// Фоны первого экрана — сгенерированы kie.ai (z-image) в стиле главной
+import hero0 from "@/assets/hero_generalnaya-uborka.jpg";
+import hero1 from "@/assets/hero_podderzhivayushchaya-uborka.jpg";
+import hero2 from "@/assets/hero_uborka-posle-remonta.jpg";
+import hero3 from "@/assets/hero_moyka-okon.jpg";
+import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p9 from "@/assets/portfolio-9.jpg";
@@ -20,6 +26,7 @@ export interface ServiceDirection {
   includes: string[];
   prices: { name: string; price: string }[];
   forWhom: string[];
+  hero: string;          // фон первого экрана
   image: string;         // коллаж «до / после» по этой услуге
   calcIdx: number;
   seoTitle: string;
@@ -31,6 +38,7 @@ export const GUARANTEE = "Если что-то не устроит — сооб�
 export const SERVICES: ServiceDirection[] = [
   {
     slug: "generalnaya-uborka",
+    hero: hero0,
     title: "Генеральная уборка",
     price: "от 150 ₽/м²",
     offer: "Генеральная уборка, после которой дом выглядит как новый",
@@ -58,6 +66,7 @@ export const SERVICES: ServiceDirection[] = [
   },
   {
     slug: "podderzhivayushchaya-uborka",
+    hero: hero1,
     title: "Поддерживающая уборка",
     price: "от 100 ₽/м²",
     offer: "Регулярная уборка — дома всегда чисто, а вы не тратите на это время",
@@ -82,6 +91,7 @@ export const SERVICES: ServiceDirection[] = [
   },
   {
     slug: "uborka-posle-remonta",
+    hero: hero2,
     title: "Уборка после ремонта",
     price: "от 200 ₽/м²",
     offer: "Уборка после ремонта: заезжайте в чистую квартиру уже завтра",
@@ -107,6 +117,7 @@ export const SERVICES: ServiceDirection[] = [
   },
   {
     slug: "moyka-okon",
+    hero: hero3,
     title: "Мойка окон и балконов",
     price: "от 400 ₽/створка",
     offer: "Окна без разводов — снаружи и внутри, на любом этаже",
@@ -134,6 +145,7 @@ export const SERVICES: ServiceDirection[] = [
   },
   {
     slug: "himchistka-mebeli",
+    hero: hero4,
     title: "Химчистка мебели",
     price: "от 500 ₽",
     offer: "Химчистка мебели на дому: диван как новый — без вывоза и запаха",

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Check, ShieldCheck, Camera, Clock, ArrowLeft } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
-import heroImage from "@/assets/hero-interior.jpg";
 import Footer from "@/components/Footer";
 import ChatBot, { openBooking } from "@/components/ChatBot";
 import NotFound from "@/pages/NotFound";
@@ -37,7 +36,7 @@ const ServicePage = () => {
     <div className="min-h-screen bg-background">
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="" className="w-full h-full object-cover" />
+          <img src={service.hero} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/75 via-foreground/55 to-foreground/80" />
         </div>
         <SiteNav onHome={false} />
