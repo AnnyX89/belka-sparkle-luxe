@@ -10,6 +10,7 @@ const services = [
   { label: "Мойка окон и балконов", pricePerM2: 0 },
   { label: "Химчистка мебели", pricePerM2: 0 },
   { label: "Мойка фасадов", pricePerM2: 130 },
+  { label: "Бытовая техника внутри", pricePerM2: 0 },
 ];
 const MIN_ORDER = 5000;
 
@@ -43,7 +44,12 @@ const FURNITURE_EXTRAS: Extra[] = [
 const FACADE_EXTRAS: Extra[] = [
   { id: "panoramic", label: "Витражи и витрины", price: 1000, unit: "секция", qty: true },
 ];
-const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : idx === 5 ? FACADE_EXTRAS : CLEANING_EXTRAS);
+const APPLIANCE_EXTRAS: Extra[] = [
+  { id: "oven", label: "Духовой шкаф", price: 1200, unit: "шт", qty: true },
+  { id: "fridge", label: "Холодильник", price: 1200, unit: "шт", qty: true },
+  { id: "microwave", label: "Микроволновка", price: 350, unit: "шт", qty: true },
+];
+const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : idx === 5 ? FACADE_EXTRAS : idx === 6 ? APPLIANCE_EXTRAS : CLEANING_EXTRAS);
 
 const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 

@@ -11,6 +11,8 @@ import hero2 from "@/assets/hero_uborka-posle-remonta.jpg";
 import hero3 from "@/assets/hero_moyka-okon.jpg";
 import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
 import hero5 from "@/assets/hero_fasady.jpg";
+import hero6 from "@/assets/hero_tehnika.jpg";
+import p5 from "@/assets/portfolio-5.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p6 from "@/assets/portfolio-6.jpg";
@@ -118,6 +120,31 @@ export const SERVICES: ServiceDirection[] = [
     calcIdx: 2,
     seoTitle: "Уборка после ремонта в Челябинске — БелкаClean",
     seoDescription: "Уборка после ремонта и строительства в Челябинске от 200 ₽/м². Удаляем строительную пыль, краску и цемент бережно к отделке.",
+  },
+  {
+    slug: "bytovaya-tehnika",
+    hero: hero6,
+    title: "Бытовая техника внутри",
+    price: "от 350 ₽",
+    offer: "Духовка, холодильник и микроволновка — как из магазина",
+    subtitle: "Отмываем технику изнутри: нагар, жир, засохшие пятна и запахи. Профессиональные средства, безопасные для еды и покрытий.",
+    benefit: "Без нагара, жира и запахов — как новая",
+    includes: [
+      "Духовой шкаф: стенки, решётки, противни, стекло дверцы",
+      "Холодильник: полки, ящики, уплотнители, удаление запаха",
+      "Микроволновка изнутри и снаружи",
+      "Вытяжка, варочная панель, посудомоечная машина",
+    ],
+    prices: [
+      { name: "Духовой шкаф", price: "от 1 200 ₽" },
+      { name: "Холодильник", price: "от 1 200 ₽" },
+      { name: "Микроволновка", price: "от 350 ₽" },
+    ],
+    forWhom: ["Перед праздниками и приездом гостей", "При переезде и сдаче квартиры", "Когда самим отмыть уже не получается"],
+    image: p5,
+    calcIdx: 6,
+    seoTitle: "Чистка духовки, холодильника и микроволновки в Челябинске — БелкаClean",
+    seoDescription: "Мойка бытовой техники изнутри в Челябинске: духовка и холодильник от 1 200 ₽, микроволновка от 350 ₽. Удаляем нагар, жир и запахи.",
   },
   {
     slug: "moyka-okon",

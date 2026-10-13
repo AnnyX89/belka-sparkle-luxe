@@ -18,6 +18,7 @@ const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp; excludeAd?:
   "moyka-okon": { match: /окон|окна|балкон|стекл/i },
   "himchistka-mebeli": { match: /химчист|диван|кресл|матрас|ковр/i },
   "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },
+  "bytovaya-tehnika": { match: /духовк|холодильн|микроволн|плит|вытяжк|техник/i, related: CLEANING_AD },
 };
 
 // что нужно от клиента и для чего считаем — под каждую услугу
@@ -25,6 +26,7 @@ const ACCESS: Record<string, { access: string; object: string }> = {
   "moyka-okon": { access: "доступ к окнам", object: "своих окон" },
   "himchistka-mebeli": { access: "доступ к мебели", object: "своей мебели" },
   "moyka-fasadov": { access: "доступ к фасаду", object: "своего здания" },
+  "bytovaya-tehnika": { access: "доступ к технике", object: "своей техники" },
 };
 const accessFor = (slug: string) => ACCESS[slug] ?? { access: "доступ в квартиру", object: "своей квартиры" };
 
