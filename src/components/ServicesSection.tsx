@@ -46,7 +46,7 @@ const ServicesSection = () => (
         {[
           { icon: CalendarCheck, big: "6+ лет", small: "на рынке Челябинска" },
           { icon: MapPin, big: "Выезд", small: "по Челябинску и пригороду" },
-          { icon: Users, big: "Своя команда", small: "без посредников" },
+          { icon: Sparkles, big: "1000+", small: "чистых квартир, домов и офисов" },
           { icon: Clock, big: "7 дней в неделю", small: "с 8:00 до 21:00" },
         ].map((f) => (
           <div key={f.big} className="flex items-center gap-3 p-5 bg-background/60">
