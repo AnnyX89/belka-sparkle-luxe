@@ -221,7 +221,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
     ],
     forWhom: ["Магазинам, салонам и кафе", "Офисным и торговым центрам", "Частным домам и коттеджам"],
-    gallery: gallery("moyka-fasadov", 10),
+    gallery: gallery("moyka-fasadov", 9),
     calcIdx: 5,
     seoTitle: "Мойка фасадов и вывесок в Челябинске — БелкаClean",
     seoDescription: "Мойка фасадов, вывесок, витрин и входных групп в Челябинске от 130 ₽/м². Удаление объявлений и клея, безопасная химия.",
