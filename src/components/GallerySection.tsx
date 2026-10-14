@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/data/services";
 
+const worksWord = (n: number) => {
+  const d = n % 10, dd = n % 100;
+  if (d === 1 && dd !== 11) return "работа";
+  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return "работы";
+  return "работ";
+};
+
 /** «Портфолио» на главной: по лучшему коллажу «до / после» из каждой услуги, клик — на страницу услуги со всеми работами */
 const GallerySection = () => (
   <section id="gallery" className="py-24 bg-background">
@@ -25,7 +32,7 @@ const GallerySection = () => (
             <div className="px-5 py-4 flex items-center justify-between gap-3 bg-background">
               <span className="font-heading text-lg font-semibold text-foreground">{s.title}</span>
               <span className="inline-flex items-center gap-1 font-body text-sm text-gold whitespace-nowrap group-hover:gap-2 transition-all">
-                {s.gallery.length} работ <ArrowRight className="w-4 h-4" />
+                {s.gallery.length} {worksWord(s.gallery.length)} <ArrowRight className="w-4 h-4" />
               </span>
             </div>
           </Link>
