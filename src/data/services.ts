@@ -63,7 +63,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["Перед праздником или приездом гостей", "При переезде и сдаче квартиры", "Раз в сезон — чтобы не копилось"],
-    gallery: gallery("generalnaya-uborka", 22),
+    gallery: gallery("generalnaya-uborka", 23),
     calcIdx: 1,
     seoTitle: "Генеральная уборка квартир в Челябинске — БелкаClean",
     seoDescription: "Генеральная уборка квартир и домов в Челябинске от 150 ₽/м². Профессиональная химия, свой инвентарь, гарантия результата.",
