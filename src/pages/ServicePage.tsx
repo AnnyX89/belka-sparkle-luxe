@@ -54,7 +54,10 @@ const ServicePage = () => {
     if (!service) return;
     document.title = service.seoTitle;
     setMeta("description", service.seoDescription);
-    window.scrollTo(0, 0);
+    // из портфолио на главной ведём сразу к галерее работ
+    const target = window.location.hash === "#raboty" ? document.getElementById("raboty") : null;
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
   }, [service]);
 
   if (!service) return <NotFound />;

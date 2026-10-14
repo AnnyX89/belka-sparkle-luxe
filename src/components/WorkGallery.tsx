@@ -14,7 +14,7 @@ const WorkGallery = ({ title, photos, alt }: WorkGalleryProps) => {
   const visible = showAll ? photos : photos.slice(0, FIRST_VISIBLE);
 
   return (
-    <section className="py-20">
+    <section id="raboty" className="py-20 scroll-mt-24">
       <div className="container mx-auto px-6 max-w-6xl text-center">
         <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">{title}</h2>
         <p className="font-body text-muted-foreground mb-8">Реальные объекты нашей команды</p>
