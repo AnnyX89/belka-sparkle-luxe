@@ -3,7 +3,6 @@
  * Цены — как в CRM (belka-srm/src/lib/priceList.ts) и у Авито-бота, всё «от», зависит от степени загрязнения.
  * calcIdx — какую услугу выбрать в калькуляторе (порядок services в ChatBot.tsx).
  */
-// Коллажи «до / после» из портфолио — показываются целиком в блоке «До и после» на странице услуги
 // Фоны первого экрана — сгенерированы kie.ai (z-image) в стиле главной
 import hero0 from "@/assets/hero_generalnaya-uborka.jpg";
 import hero1 from "@/assets/hero_podderzhivayushchaya-uborka.jpg";
@@ -14,15 +13,6 @@ import hero5 from "@/assets/hero_fasady.jpg";
 import hero6 from "@/assets/hero_tehnika.jpg";
 import heroOffice from "@/assets/hero_uborka-ofisov.jpg";
 import heroKitchen from "@/assets/hero_kuhonnyy-garnitur.jpg";
-import p5 from "@/assets/portfolio-5.jpg";
-import p4 from "@/assets/portfolio-4.jpg";
-import p3 from "@/assets/portfolio-3.jpg";
-import p6 from "@/assets/portfolio-6.jpg";
-import p10 from "@/assets/portfolio-10.jpg";
-import p11 from "@/assets/portfolio-11.jpg";
-import p12 from "@/assets/portfolio-12.jpg";
-import p8 from "@/assets/portfolio-8.jpg";
-import pOffice from "@/assets/portfolio-office.jpg";
 
 export interface ServiceDirection {
   slug: string;
@@ -35,12 +25,15 @@ export interface ServiceDirection {
   prices: { name: string; price: string }[];
   forWhom: string[];
   hero: string;          // фон первого экрана
-  image?: string;        // коллаж «до / после» по этой услуге; нет — блок не показываем
-  imageTitle?: string;   // заголовок блока, если фото не «до / после»
+  gallery: string[];     // коллажи «до / после» (public/raboty/<slug>/NN.jpg), первый — самый показательный
+  galleryTitle?: string; // заголовок блока, если фото не «до / после»
   calcIdx: number;
   seoTitle: string;
   seoDescription: string;
 }
+
+const gallery = (slug: string, count: number) =>
+  Array.from({ length: count }, (_, i) => `/raboty/${slug}/${String(i + 1).padStart(2, "0")}.jpg`);
 
 export const GUARANTEE = "Если что-то не устроит — сообщите в течение 24 часов, и мы бесплатно переделаем.";
 
@@ -70,7 +63,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["Перед праздником или приездом гостей", "При переезде и сдаче квартиры", "Раз в сезон — чтобы не копилось"],
-    image: p4,
+    gallery: gallery("generalnaya-uborka", 18),
     calcIdx: 1,
     seoTitle: "Генеральная уборка квартир в Челябинске — БелкаClean",
     seoDescription: "Генеральная уборка квартир и домов в Челябинске от 150 ₽/м². Профессиональная химия, свой инвентарь, гарантия результата.",
@@ -95,7 +88,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Холодильник / духовка", price: "от 1 200 ₽" },
     ],
     forWhom: ["Занятым людям и семьям с детьми", "Владельцам питомцев", "Офисам и небольшим помещениям"],
-    image: p6,
+    gallery: gallery("podderzhivayushchaya-uborka", 6),
     calcIdx: 0,
     seoTitle: "Поддерживающая уборка в Челябинске — БелкаClean",
     seoDescription: "Регулярная поддерживающая уборка квартир и офисов в Челябинске от 100 ₽/м². Удобный график, одна команда.",
@@ -121,7 +114,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Окна", price: "от 400 ₽/створка" },
     ],
     forWhom: ["После ремонта и отделки", "Новостройки перед заездом", "Перед сдачей объекта заказчику"],
-    image: p3,
+    gallery: gallery("uborka-posle-remonta", 10),
     calcIdx: 2,
     seoTitle: "Уборка после ремонта в Челябинске — БелкаClean",
     seoDescription: "Уборка после ремонта и строительства в Челябинске от 200 ₽/м². Удаляем строительную пыль, краску и цемент бережно к отделке.",
@@ -146,7 +139,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Микроволновка", price: "от 350 ₽" },
     ],
     forWhom: ["Перед праздниками и приездом гостей", "При переезде и сдаче квартиры", "Когда самим отмыть уже не получается"],
-    image: p5,
+    gallery: gallery("bytovaya-tehnika", 10),
     calcIdx: 6,
     seoTitle: "Чистка духовки, холодильника и микроволновки в Челябинске — БелкаClean",
     seoDescription: "Мойка бытовой техники изнутри в Челябинске: духовка и холодильник от 1 200 ₽, микроволновка от 350 ₽. Удаляем нагар, жир и запахи.",
@@ -174,7 +167,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Помыть балкон (пол, стены)", price: "от 2 500 ₽" },
     ],
     forWhom: ["Весной и осенью", "После ремонта фасада или стройки рядом", "Перед продажей или сдачей квартиры"],
-    image: p12,
+    gallery: gallery("moyka-okon", 11),
     calcIdx: 3,
     seoTitle: "Мойка окон и балконов в Челябинске — БелкаClean",
     seoDescription: "Мойка окон, балконов и панорамного остекления в Челябинске от 400 ₽ за створку. Без разводов, с гарантией.",
@@ -203,7 +196,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Сушка после химчистки", price: "от 1 000 ₽" },
     ],
     forWhom: ["Семьям с детьми и питомцами", "Аллергикам", "Перед продажей мебели или квартиры"],
-    image: p10,
+    gallery: gallery("himchistka-mebeli", 8),
     calcIdx: 4,
     seoTitle: "Химчистка мебели на дому в Челябинске — БелкаClean",
     seoDescription: "Химчистка диванов, кресел, матрасов и ковров на дому в Челябинске. Гипоаллергенные средства, сушка, гарантия.",
@@ -211,13 +204,14 @@ export const SERVICES: ServiceDirection[] = [
   {
     slug: "moyka-fasadov",
     hero: hero5,
-    title: "Мойка фасадов",
+    title: "Мойка фасадов и вывесок",
     price: "от 130 ₽/м²",
-    offer: "Мойка фасадов: здание выглядит ухоженно — клиенты замечают это первыми",
-    subtitle: "Моем фасады магазинов, офисов и частных домов: вентилируемые панели, витрины, входные группы. Убираем пыль, копоть, следы объявлений и скотча.",
+    offer: "Мойка фасадов и вывесок: здание выглядит ухоженно — клиенты замечают это первыми",
+    subtitle: "Моем фасады магазинов, офисов и частных домов: вентилируемые панели, вывески и световые буквы, витрины, входные группы. Убираем пыль, копоть, следы объявлений и скотча.",
     benefit: "Ухоженный фасад — лучшая вывеска для вашего бизнеса",
     includes: [
       "Мойка фасадных панелей и облицовки",
+      "Мойка вывесок и объёмных букв",
       "Витрины, входные группы и козырьки",
       "Удаление следов объявлений, клея и скотча",
       "Подбор химии под материал — без повреждения покрытия",
@@ -227,10 +221,10 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
     ],
     forWhom: ["Магазинам, салонам и кафе", "Офисным и торговым центрам", "Частным домам и коттеджам"],
-    image: p11,
+    gallery: gallery("moyka-fasadov", 10),
     calcIdx: 5,
-    seoTitle: "Мойка фасадов в Челябинске — БелкаClean",
-    seoDescription: "Мойка фасадов, витрин и входных групп в Челябинске от 130 ₽/м². Удаление объявлений и клея, безопасная химия.",
+    seoTitle: "Мойка фасадов и вывесок в Челябинске — БелкаClean",
+    seoDescription: "Мойка фасадов, вывесок, витрин и входных групп в Челябинске от 130 ₽/м². Удаление объявлений и клея, безопасная химия.",
   },
   {
     slug: "uborka-ofisov",
@@ -252,8 +246,8 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
     ],
     forWhom: ["Офисам и коворкингам", "Салонам, магазинам и кафе", "После ремонта или переезда офиса"],
-    image: pOffice,
-    imageTitle: "Наша работа",
+    gallery: gallery("uborka-ofisov", 3),
+    galleryTitle: "Наша работа",
     calcIdx: 7,
     seoTitle: "Уборка офисов в Челябинске — БелкаClean",
     seoDescription: "Уборка офисов и коммерческих помещений в Челябинске от 120 ₽/м². Разово или по графику, в удобное время, с гарантией.",
@@ -278,7 +272,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Духовка / холодильник", price: "от 1 200 ₽" },
     ],
     forWhom: ["Перед праздниками и приездом гостей", "При переезде и сдаче квартиры", "Когда жир уже не отмывается сам"],
-    image: p8,
+    gallery: gallery("kuhonnyy-garnitur", 12),
     calcIdx: 8,
     seoTitle: "Мойка кухонного гарнитура в Челябинске — БелкаClean",
     seoDescription: "Мойка кухонного гарнитура в Челябинске от 2 500 ₽: фасады, столешница, фартук, шкафы изнутри. Удаляем жир и налёт.",

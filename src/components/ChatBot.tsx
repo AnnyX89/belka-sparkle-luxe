@@ -9,7 +9,7 @@ const services = [
   { label: "Уборка после ремонта", pricePerM2: 200 },
   { label: "Мойка окон и балконов", pricePerM2: 0 },
   { label: "Химчистка мебели", pricePerM2: 0 },
-  { label: "Мойка фасадов", pricePerM2: 130 },
+  { label: "Мойка фасадов и вывесок", pricePerM2: 130 },
   { label: "Бытовая техника внутри", pricePerM2: 0 },
   { label: "Уборка офисов", pricePerM2: 120 },
   { label: "Кухонный гарнитур", pricePerM2: 0 },

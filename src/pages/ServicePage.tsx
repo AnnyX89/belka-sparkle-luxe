@@ -6,6 +6,7 @@ import SiteNav from "@/components/SiteNav";
 import Footer from "@/components/Footer";
 import ReviewsSection from "@/components/ReviewsSection";
 import ChatBot, { openBooking } from "@/components/ChatBot";
+import WorkGallery from "@/components/WorkGallery";
 import NotFound from "@/pages/NotFound";
 import { GUARANTEE, SERVICES, findService } from "@/data/services";
 
@@ -135,14 +136,8 @@ const ServicePage = () => {
         </div>
       </section>
 
-      {service.image && <section className="py-20">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">{service.imageTitle ?? "До и после"}</h2>
-          <p className="font-body text-muted-foreground mb-8">Реальная работа нашей команды</p>
-          <img src={service.image} alt={`${service.title}: ${(service.imageTitle ?? "до и после").toLowerCase()}`} loading="lazy"
-            className="mx-auto max-h-[560px] w-auto rounded-2xl shadow-gold object-contain" />
-        </div>
-      </section>}
+      {service.gallery.length > 0 && <WorkGallery key={service.slug} title={service.galleryTitle ?? "До и после"}
+        photos={service.gallery} alt={service.title} />}
 
       <section className="pb-20">
         <div className="container mx-auto px-6 grid sm:grid-cols-3 gap-6 max-w-6xl">
