@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ArrowRight, Building2, CalendarCheck, MapPin, Users, Clock, Microwave } from "lucide-react";
+import { HardHat, Sparkles, Sofa, AppWindow, RefreshCw, ArrowRight, Building2, CalendarCheck, MapPin, Users, Clock, Microwave, Briefcase, CookingPot } from "lucide-react";
 import { SERVICES } from "@/data/services";
 
 const ICONS: Record<string, typeof Sparkles> = {
@@ -10,6 +10,8 @@ const ICONS: Record<string, typeof Sparkles> = {
   "himchistka-mebeli": Sofa,
   "moyka-fasadov": Building2,
   "bytovaya-tehnika": Microwave,
+  "uborka-ofisov": Briefcase,
+  "kuhonnyy-garnitur": CookingPot,
 };
 
 /** «Наши услуги»: каждая карточка — выгода для клиента + цена, ведёт на свою страницу */

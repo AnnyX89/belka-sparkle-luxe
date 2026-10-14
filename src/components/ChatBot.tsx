@@ -11,6 +11,8 @@ const services = [
   { label: "Химчистка мебели", pricePerM2: 0 },
   { label: "Мойка фасадов", pricePerM2: 130 },
   { label: "Бытовая техника внутри", pricePerM2: 0 },
+  { label: "Уборка офисов", pricePerM2: 120 },
+  { label: "Кухонный гарнитур", pricePerM2: 0 },
 ];
 const MIN_ORDER = 5000;
 
@@ -49,7 +51,13 @@ const APPLIANCE_EXTRAS: Extra[] = [
   { id: "fridge", label: "Холодильник", price: 1200, unit: "шт", qty: true },
   { id: "microwave", label: "Микроволновка", price: 350, unit: "шт", qty: true },
 ];
-const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : idx === 5 ? FACADE_EXTRAS : idx === 6 ? APPLIANCE_EXTRAS : CLEANING_EXTRAS);
+const KITCHEN_EXTRAS: Extra[] = [
+  { id: "kitchen", label: "Гарнитур снаружи", price: 2500, unit: "шт" },
+  { id: "drawers", label: "Шкафы и ящики внутри", price: 150, unit: "ящик", qty: true },
+  { id: "oven", label: "Духовка", price: 1200, unit: "шт" },
+  { id: "fridge", label: "Холодильник", price: 1200, unit: "шт" },
+];
+const extrasFor = (idx: number) => (idx === 3 ? WINDOW_EXTRAS : idx === 4 ? FURNITURE_EXTRAS : idx === 5 ? FACADE_EXTRAS : idx === 6 ? APPLIANCE_EXTRAS : idx === 8 ? KITCHEN_EXTRAS : CLEANING_EXTRAS);
 
 const WEBHOOK_URL = "https://crm.belkaclean74.ru/api/site-lead";
 
@@ -194,7 +202,7 @@ const ChatBot = () => {
                   <input
                     type="range"
                     min={30}
-                    max={serviceIdx === 5 ? 1000 : 300}
+                    max={serviceIdx === 5 || serviceIdx === 7 ? 1000 : 300}
                     step={5}
                     value={area}
                     onChange={(e) => setArea(Number(e.target.value))}
@@ -202,7 +210,7 @@ const ChatBot = () => {
                   />
                   <div className="flex justify-between font-body text-[10px] text-muted-foreground mt-1">
                     <span>30 м²</span>
-                    <span>{serviceIdx === 5 ? 1000 : 300} м²</span>
+                    <span>{serviceIdx === 5 || serviceIdx === 7 ? 1000 : 300} м²</span>
                   </div>
                 </div>}
 

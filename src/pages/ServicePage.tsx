@@ -19,6 +19,8 @@ const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp; excludeAd?:
   "himchistka-mebeli": { match: /химчист|диван|кресл|матрас|ковр/i },
   "moyka-fasadov": { match: /фасад|витрин/i, related: /окон|окна|стекл/i },
   "bytovaya-tehnika": { match: /духовк|холодильн|микроволн|плит|вытяжк|техник/i, related: CLEANING_AD },
+  "uborka-ofisov": { match: /офис|помещени|салон|магазин/i, related: CLEANING_AD, excludeAd: /Мытьё окон|Химчистка мягкой/i },
+  "kuhonnyy-garnitur": { match: /кухн|гарнитур|жир|фасад(ы|ов) кухни/i, related: CLEANING_AD },
 };
 
 // что нужно от клиента и для чего считаем — под каждую услугу
@@ -27,6 +29,8 @@ const ACCESS: Record<string, { access: string; object: string }> = {
   "himchistka-mebeli": { access: "доступ к мебели", object: "своей мебели" },
   "moyka-fasadov": { access: "доступ к фасаду", object: "своего здания" },
   "bytovaya-tehnika": { access: "доступ к технике", object: "своей техники" },
+  "uborka-ofisov": { access: "доступ в помещение", object: "своего офиса" },
+  "kuhonnyy-garnitur": { access: "доступ к кухне", object: "своей кухни" },
 };
 const accessFor = (slug: string) => ACCESS[slug] ?? { access: "доступ в квартиру", object: "своей квартиры" };
 
@@ -131,14 +135,14 @@ const ServicePage = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      {service.image && <section className="py-20">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">До и после</h2>
           <p className="font-body text-muted-foreground mb-8">Реальная работа нашей команды</p>
           <img src={service.image} alt={`${service.title}: до и после`} loading="lazy"
             className="mx-auto max-h-[560px] w-auto rounded-2xl shadow-gold object-contain" />
         </div>
-      </section>
+      </section>}
 
       <section className="pb-20">
         <div className="container mx-auto px-6 grid sm:grid-cols-3 gap-6 max-w-6xl">

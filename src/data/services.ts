@@ -12,6 +12,8 @@ import hero3 from "@/assets/hero_moyka-okon.jpg";
 import hero4 from "@/assets/hero_himchistka-mebeli.jpg";
 import hero5 from "@/assets/hero_fasady.jpg";
 import hero6 from "@/assets/hero_tehnika.jpg";
+import heroOffice from "@/assets/hero_uborka-ofisov.jpg";
+import heroKitchen from "@/assets/hero_kuhonnyy-garnitur.jpg";
 import p5 from "@/assets/portfolio-5.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
@@ -19,6 +21,7 @@ import p6 from "@/assets/portfolio-6.jpg";
 import p10 from "@/assets/portfolio-10.jpg";
 import p11 from "@/assets/portfolio-11.jpg";
 import p12 from "@/assets/portfolio-12.jpg";
+import p8 from "@/assets/portfolio-8.jpg";
 
 export interface ServiceDirection {
   slug: string;
@@ -31,7 +34,7 @@ export interface ServiceDirection {
   prices: { name: string; price: string }[];
   forWhom: string[];
   hero: string;          // фон первого экрана
-  image: string;         // коллаж «до / после» по этой услуге
+  image?: string;        // коллаж «до / после» по этой услуге; нет — блок не показываем
   calcIdx: number;
   seoTitle: string;
   seoDescription: string;
@@ -226,6 +229,55 @@ export const SERVICES: ServiceDirection[] = [
     calcIdx: 5,
     seoTitle: "Мойка фасадов в Челябинске — БелкаClean",
     seoDescription: "Мойка фасадов, витрин и входных групп в Челябинске от 130 ₽/м². Удаление объявлений и клея, безопасная химия.",
+  },
+  {
+    slug: "uborka-ofisov",
+    hero: heroOffice,
+    title: "Уборка офисов",
+    price: "от 120 ₽/м²",
+    offer: "Уборка офиса: сотрудники приходят в чистоту, клиенты видят порядок",
+    subtitle: "Убираем офисы, салоны, магазины и коммерческие помещения. Разово или по графику, в удобное время, в том числе вечером и в выходные.",
+    benefit: "Чистый офис без отвлечения от работы",
+    includes: [
+      "Рабочие места, столы, оргтехника снаружи",
+      "Полы, плинтусы, двери и выключатели",
+      "Санузлы и кухня для сотрудников",
+      "Окна, стеклянные перегородки и входная группа",
+    ],
+    prices: [
+      { name: "Уборка офиса", price: "от 120 ₽/м²" },
+      { name: "Окна", price: "от 400 ₽/створка" },
+      { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
+    ],
+    forWhom: ["Офисам и коворкингам", "Салонам, магазинам и кафе", "После ремонта или переезда офиса"],
+    calcIdx: 7,
+    seoTitle: "Уборка офисов в Челябинске — БелкаClean",
+    seoDescription: "Уборка офисов и коммерческих помещений в Челябинске от 120 ₽/м². Разово или по графику, в удобное время, с гарантией.",
+  },
+  {
+    slug: "kuhonnyy-garnitur",
+    hero: heroKitchen,
+    title: "Кухонный гарнитур",
+    price: "от 2 500 ₽",
+    offer: "Кухня без жира и налёта — снаружи и внутри шкафов",
+    subtitle: "Отмываем фасады, столешницу, фартук и шкафы изнутри. Убираем застарелый жир и налёт средствами, безопасными для покрытий и посуды.",
+    benefit: "Фасады и шкафы без жира и липкого налёта",
+    includes: [
+      "Фасады, ручки и торцы шкафов",
+      "Столешница, фартук и мойка",
+      "Шкафы и ящики изнутри",
+      "Вытяжка и варочная панель снаружи",
+    ],
+    prices: [
+      { name: "Гарнитур снаружи", price: "от 2 500 ₽" },
+      { name: "Шкафы и ящики внутри", price: "от 150 ₽/ящик" },
+      { name: "Духовка / холодильник", price: "от 1 200 ₽" },
+    ],
+    forWhom: ["Перед праздниками и приездом гостей", "При переезде и сдаче квартиры", "Когда жир уже не отмывается сам"],
+    image: p8,
+    calcIdx: 8,
+    seoTitle: "Мойка кухонного гарнитура в Челябинске — БелкаClean",
+    seoDescription: "Мойка кухонного гарнитура в Челябинске от 2 500 ₽: фасады, столешница, фартук, шкафы изнутри. Удаляем жир и налёт.",
   },
 ];
 
