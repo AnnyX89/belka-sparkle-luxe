@@ -137,9 +137,9 @@ const ServicePage = () => {
 
       {service.image && <section className="py-20">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">До и после</h2>
+          <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">{service.imageTitle ?? "До и после"}</h2>
           <p className="font-body text-muted-foreground mb-8">Реальная работа нашей команды</p>
-          <img src={service.image} alt={`${service.title}: до и после`} loading="lazy"
+          <img src={service.image} alt={`${service.title}: ${(service.imageTitle ?? "до и после").toLowerCase()}`} loading="lazy"
             className="mx-auto max-h-[560px] w-auto rounded-2xl shadow-gold object-contain" />
         </div>
       </section>}

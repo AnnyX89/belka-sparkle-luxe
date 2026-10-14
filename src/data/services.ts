@@ -22,6 +22,7 @@ import p10 from "@/assets/portfolio-10.jpg";
 import p11 from "@/assets/portfolio-11.jpg";
 import p12 from "@/assets/portfolio-12.jpg";
 import p8 from "@/assets/portfolio-8.jpg";
+import pOffice from "@/assets/portfolio-office.jpg";
 
 export interface ServiceDirection {
   slug: string;
@@ -35,6 +36,7 @@ export interface ServiceDirection {
   forWhom: string[];
   hero: string;          // фон первого экрана
   image?: string;        // коллаж «до / после» по этой услуге; нет — блок не показываем
+  imageTitle?: string;   // заголовок блока, если фото не «до / после»
   calcIdx: number;
   seoTitle: string;
   seoDescription: string;
@@ -250,6 +252,8 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Витражи и витрины", price: "от 1 000 ₽/секция" },
     ],
     forWhom: ["Офисам и коворкингам", "Салонам, магазинам и кафе", "После ремонта или переезда офиса"],
+    image: pOffice,
+    imageTitle: "Наша работа",
     calcIdx: 7,
     seoTitle: "Уборка офисов в Челябинске — БелкаClean",
     seoDescription: "Уборка офисов и коммерческих помещений в Челябинске от 120 ₽/м². Разово или по графику, в удобное время, с гарантией.",
