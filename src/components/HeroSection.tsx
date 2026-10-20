@@ -24,15 +24,16 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
         <div className="animate-fade-in-up">
           <div className="inline-block mb-6">
-            <span className="text-[hsl(40_80%_72%)] font-heading text-sm sm:text-lg font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase whitespace-nowrap [text-shadow:0_2px_8px_rgb(0_0_0/0.6)]">Челябинск · с 2018 года</span>
+            {/* H1 для поиска: главный запрос «клининг» + город; слоган ниже — оформление */}
+            <h1 className="text-[hsl(40_80%_72%)] font-heading text-sm sm:text-lg font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase whitespace-nowrap [text-shadow:0_2px_8px_rgb(0_0_0/0.6)]">Клининг в Челябинске<span className="hidden sm:inline"> · с 2018 года</span></h1>
           </div>
-          <h1 className="font-heading text-[1.85rem] sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mb-6 leading-tight [text-shadow:0_2px_16px_rgb(0_0_0/0.55)]">
+          <p className="font-heading text-[1.85rem] sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white mb-6 leading-tight [text-shadow:0_2px_16px_rgb(0_0_0/0.55)]">
             <span className="block whitespace-nowrap text-[hsl(40_85%_68%)]">Чисто за один день.</span>
             <span className="block whitespace-nowrap">Цена заранее.</span>
             <span className="block whitespace-nowrap">Гарантия результата.</span>
-          </h1>
+          </p>
           <p className="font-body text-xl md:text-2xl text-white mb-10 [text-shadow:0_2px_10px_rgb(0_0_0/0.6)] max-w-2xl mx-auto leading-relaxed">
-            Уборка квартир, домов и офисов в Челябинске от 100 ₽/м²
+            Клининговая компания: генеральная уборка квартир и домов, клининг после ремонта, химчистка диванов и ковров, мытьё окон — от 100 ₽/м²
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
