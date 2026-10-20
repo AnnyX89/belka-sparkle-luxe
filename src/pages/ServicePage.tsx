@@ -22,6 +22,7 @@ const REVIEWS_FOR: Record<string, { match: RegExp; related?: RegExp; excludeAd?:
   "bytovaya-tehnika": { match: /духовк|холодильн|микроволн|плит|вытяжк|техник/i, related: CLEANING_AD },
   "uborka-ofisov": { match: /офис|помещени|салон|магазин/i, related: CLEANING_AD, excludeAd: /Мытьё окон|Химчистка мягкой/i },
   "kuhonnyy-garnitur": { match: /кухн|гарнитур|жир|фасад(ы|ов) кухни/i, related: CLEANING_AD },
+  "himchistka-kovrov": { match: /ковр|палас|ковролин/i, related: /химчист|диван|кресл|матрас/i },
 };
 
 // что нужно от клиента и для чего считаем — под каждую услугу
@@ -32,6 +33,7 @@ const ACCESS: Record<string, { access: string; object: string }> = {
   "bytovaya-tehnika": { access: "доступ к технике", object: "своей техники" },
   "uborka-ofisov": { access: "доступ в помещение", object: "своего офиса" },
   "kuhonnyy-garnitur": { access: "доступ к кухне", object: "своей кухни" },
+  "himchistka-kovrov": { access: "место, где лежит ковёр", object: "своего ковра" },
 };
 const accessFor = (slug: string) => ACCESS[slug] ?? { access: "доступ в квартиру", object: "своей квартиры" };
 
