@@ -247,7 +247,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Диван 2-местный (вместе с ковром)", price: "от 4 000 ₽" },
     ],
     forWhom: ["Семьям с детьми и питомцами", "Аллергикам", "Перед праздниками и после ремонта"],
-    gallery: gallery("himchistka-kovrov", 1),
+    gallery: gallery("himchistka-kovrov", 3),
     calcIdx: 4,
     seoTitle: "Химчистка ковров в Челябинске | БелкаClean",
     seoDescription: "Химчистка ковров, паласов и ковролина на дому в Челябинске от 450 ₽/м². Профессиональный экстрактор, гипоаллергенные средства, гарантия.",
