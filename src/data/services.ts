@@ -163,6 +163,7 @@ export const SERVICES: ServiceDirection[] = [
       { name: "Духовой шкаф", price: "от 1 200 ₽" },
       { name: "Холодильник", price: "от 1 200 ₽" },
       { name: "Микроволновка", price: "от 350 ₽" },
+      { name: "Вытяжка", price: "от 500 ₽" },
     ],
     forWhom: ["Перед праздниками и приездом гостей", "При переезде и сдаче квартиры", "Когда самим отмыть уже не получается"],
     gallery: gallery("bytovaya-tehnika", 11),
