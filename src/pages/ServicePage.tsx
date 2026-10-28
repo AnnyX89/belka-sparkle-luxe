@@ -86,7 +86,7 @@ const ServicePage = () => {
           <Link to="/#services" className="inline-flex items-center gap-1.5 font-body text-sm text-primary-foreground/70 hover:text-gold mb-6">
             <ArrowLeft className="w-4 h-4" /> Все услуги
           </Link>
-          <span className="block text-gold font-body text-sm tracking-[0.3em] uppercase mb-4">{service.title} · {service.price}</span>
+          <span className="block text-gold font-body text-sm tracking-[0.3em] uppercase mb-4">{service.title} · <span className="whitespace-nowrap">{service.price}</span></span>
           <h1 className="font-heading text-4xl md:text-6xl font-semibold text-primary-foreground leading-tight mb-6">{service.offer}</h1>
           <p className="font-body text-lg text-primary-foreground/85 max-w-2xl leading-relaxed mb-8">{service.subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-4">
