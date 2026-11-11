@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { X, Phone, CheckCircle2, Squirrel } from "lucide-react";
 import logo from "@/assets/belkaclean-logo.jpg";
 import { reachGoal } from "@/lib/metrika";
+import { getSource } from "@/lib/leadSource";
 
 /** Прайс как в CRM (src/lib/priceList.ts в belka-srm) — всё «от», зависит от степени загрязнения */
 const services = [
@@ -136,6 +137,7 @@ const ChatBot = () => {
           service: summary,
           area: hasArea ? area : undefined,
           estimatedPrice: price,
+          source: getSource(),
         }),
       });
     } catch {
