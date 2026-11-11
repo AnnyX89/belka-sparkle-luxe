@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X, Phone, CheckCircle2, Squirrel } from "lucide-react";
 import logo from "@/assets/belkaclean-logo.jpg";
+import { reachGoal } from "@/lib/metrika";
 
 /** Прайс как в CRM (src/lib/priceList.ts в belka-srm) — всё «от», зависит от степени загрязнения */
 const services = [
@@ -124,6 +125,7 @@ const ChatBot = () => {
   const submit = async () => {
     if (!phone.trim()) return;
     setSending(true);
+    reachGoal("lead_form");
     try {
       await fetch(WEBHOOK_URL, {
         method: "POST",
